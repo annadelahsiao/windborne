@@ -35,9 +35,9 @@
         .scene {
             position: relative;
             width: 100%;
-            height: 80vh;
+            height: 90vh;
             border-radius: 12px;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .page-header {
@@ -446,8 +446,6 @@
         /* Slider Styles */
         .view-slider {
             position: absolute;
-            top: 0;
-            right: 20px;
             z-index: 10;
             display: flex;
             margin-top: 20px;
@@ -490,27 +488,27 @@
 
         /* Components View Styles */
         .components-view {
-            height: 100%;
-            display: grid;
-            grid-template-columns: 500px 1fr 1fr;
-            align-items: center;
-            padding: 0;
+            height: 90vh;
+            width: 100%;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .component-list {
             background: rgba(0,0,0,0.5);
             padding: 0;
             border-radius: 8px;
-            max-width: 500px;
-            flex: 0 0 auto;
+            max-width: 400px;
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
-            z-index: 5;
-            width: 460px;
-            grid-column: 1;
-            align-self: center;
-            overflow: hidden;
+            z-index: 100;
+            width: 380px;
+            overflow-y: auto;
+            max-height: 80vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
         }
 
         .component-item {
@@ -573,21 +571,20 @@
         }
 
         .booster-diagram {
-            position: relative;
+            position: absolute;
             width: 100%;
-            height: 700px;
-            margin: 0 auto;
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-column: 2 / span 2;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
+        }
+        
+        .tower-static, .booster-static {
+            pointer-events: auto;
         }
         
         /* Component highlight styles */
@@ -671,9 +668,9 @@
                 <!-- Components View -->
                 <div id="components-view" class="view-container">
                     <div class="components-view">
-                        <div class="component-list">
+                        <div class="component-list" style="max-height: 80vh; overflow-y: auto; width: 380px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); z-index: 100;">
                             <!-- 添加悬停提示 -->
-                            <div style="padding: 10px; text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 30, 30, 0.5);">
+                            <div style="padding: 10px; text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 30, 30, 0.5); position: sticky; top: 0; z-index: 10;">
                                 Hover to interact
                             </div>
                             <div class="component-item" data-component="mechazilla">
@@ -724,9 +721,9 @@
                         </div>
                         
                         <!-- Booster Diagram -->
-                        <div class="booster-diagram" style="width: 100%; position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-column: 2 / span 2; align-items: center; height: 100%;">
+                        <div class="booster-diagram">
                             <!-- Launch Tower for Components View -->
-                            <div class="tower-static" style="position: relative; width: 80px; height: 70vh; margin: 0 auto; background: linear-gradient(90deg, rgba(40,40,40,0.9), rgba(60,60,60,0.9), rgba(40,40,40,0.9)); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; z-index: 0; border-radius: 4px; grid-column: 1; align-self: center;">
+                            <div class="tower-static" style="position: absolute; left: 5%; top: 50%; transform: translateY(-50%); width: 100px; height: 600px; background: linear-gradient(90deg, rgba(40,40,40,0.9), rgba(60,60,60,0.9), rgba(40,40,40,0.9)); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; z-index: 0; border-radius: 4px; overflow: visible;">
                                 <!-- Tower segments -->
                                 <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
                                     <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
@@ -738,20 +735,20 @@
                                 </div>
                                 
                                 <!-- Mechazilla Arms -->
-                                <div class="mechazilla-static" style="position: absolute; left: 50%; top: 30%; transform: translateX(-50%); width: 300px; height: 200px; z-index: 1;">
-                                    <!-- Left Arm - 完全复制recovery view的结构 -->
+                                <div class="mechazilla-static" style="position: absolute; left: 50%; top: 30%; transform: translateX(-50%); width: 200px; height: 200px; z-index: 1; overflow: visible;">
+                                    <!-- Left Arm -->
                                     <div class="static-catch-arm" style="width: 40px; height: 200px; background: #444; position: absolute; left: 0; transform: translateX(-100%); border-radius: 4px; box-shadow: none;">
                                         <div class="catch-arm-inner" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #333, #555); border-radius: 4px;"></div>
                                     </div>
                                     
-                                    <!-- Right Arm - 完全复制recovery view的结构 -->
+                                    <!-- Right Arm -->
                                     <div class="static-catch-arm" style="width: 40px; height: 200px; background: #444; position: absolute; right: 0; transform: translateX(100%); border-radius: 4px; box-shadow: none;">
                                         <div class="catch-arm-inner" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #333, #555); border-radius: 4px;"></div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="booster-static" style="width: 150px; height: 600px; margin: 0 auto; position: relative; grid-column: 2; align-self: center;">
+                            <div class="booster-static" style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 180px; height: 600px;">
                                 <div class="booster-body" style="width: 100%; height: 100%; background: linear-gradient(to bottom, #666, #888); border: 3px solid #999; border-radius: 12px 12px 0 0; position: relative; overflow: visible;">
                                     <!-- Static Grid Fins -->
                                     <div class="grid-fin" style="position: absolute; width: 45px; height: 45px; background: #555; top: 20%; left: -50px; border: 2px solid #777; box-shadow: none; border-radius: 2px;">
@@ -778,6 +775,20 @@
                                     <div class="engine-section-static" style="position: absolute; bottom: -30px; left: 0; width: 100%; height: 50px; background: #333; border-radius: 0 0 12px 12px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
                                         <!-- Engine cluster - simplified version -->
                                         <div style="width: 80%; height: 80%; background: #444; border-radius: 0 0 8px 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px;">
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
                                             <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
                                             <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
                                             <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
@@ -966,7 +977,8 @@
                             gridFins.forEach(fin => {
                                 const finHighlight = document.createElement('div');
                                 finHighlight.className = 'component-highlight temp-highlight';
-                                finHighlight.style.position = '-5px';
+                                finHighlight.style.position = 'absolute';
+                                finHighlight.style.top = '-5px';
                                 finHighlight.style.left = '-5px';
                                 finHighlight.style.width = 'calc(100% + 10px)';
                                 finHighlight.style.height = 'calc(100% + 10px)';
