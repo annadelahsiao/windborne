@@ -740,6 +740,24 @@
             .component-desc {
                 font-size: 0.8rem;
             }
+            
+            /* 移动设备上的组件视图只显示列表 */
+            .components-view {
+                justify-content: center;
+                padding: 10px;
+            }
+            
+            /* 在移动设备上隐藏塔和助推器示意图 */
+            .tower-static, .booster-static {
+                display: none !important;
+            }
+            
+            /* 让组件列表在移动设备上更宽以利用空间 */
+            .component-list {
+                width: 100% !important;
+                max-width: 450px;
+                margin: 0 auto;
+            }
         }
         
         @media (max-width: 576px) {
