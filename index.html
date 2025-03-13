@@ -13,7 +13,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: monospace;
             background: url('./background image.jpg') center center/cover no-repeat fixed;
             color: #fff;
             overflow-x: hidden;
@@ -35,34 +35,38 @@
         .scene {
             position: relative;
             width: 100%;
-            height: 90vh;
+            height: 80vh;
             border-radius: 12px;
             overflow: hidden;
         }
 
         .page-header {
             text-align: left;
-            position: absolute;
-            bottom: 20px;
-            z-index: 5;
+            position: static;
+            margin: 20px 0 0 20px;
+            z-index: 15;
             width: auto;
             transform: none;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .page-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin: 0;
             color: #fff;
-            text-shadow: 0 0 20px rgba(0, 82, 136, 0.5);
+            text-shadow: none;
             font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         .page-description {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #fff;
             margin: 0.5rem 0 0 0;
-            font-family: monospace;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
         }
 
         .launch-tower {
@@ -134,7 +138,7 @@
             transform-origin: center;
             transition: transform 1s ease;
             border: 2px solid #777;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: none;
             border-radius: 2px;
         }
 
@@ -152,7 +156,7 @@
                 #555 6px
             );
             border-radius: 1px;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+            box-shadow: none;
         }
 
         .engine-section {
@@ -184,7 +188,7 @@
         .engine.active {
             background: #ff4400;
             border-color: #ff6600;
-            box-shadow: 0 0 10px #ff4400;
+            box-shadow: none;
         }
 
         .engine.active::after {
@@ -217,11 +221,10 @@
 
         .telemetry {
             position: absolute;
-            top: 20px;
+            top: 10%;
             background: rgba(0,0,0,0.5);
             padding: 20px;
             border-radius: 8px;
-            font-family: monospace;
             font-size: 14px;
             color: #0f0;
             display: grid;
@@ -229,14 +232,14 @@
         }
 
         .control-panel {
-            position: fixed;
+            position: absolute;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 1rem;
             justify-content: center;
-            z-index: 1000;
+            z-index: 10;
         }
 
         .control-btn {
@@ -250,6 +253,7 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .control-btn:hover {
@@ -259,12 +263,11 @@
 
         .phase-indicator {
             position: absolute;
-            top: 20px;
+            top: 10%;
             right: 20px;
             background: rgba(0,0,0,0.5);
             padding: 15px;
             border-radius: 8px;
-            font-family: monospace;
         }
 
         .phase-step {
@@ -296,23 +299,21 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            box-shadow: none;
         }
 
         .specs-overlay {
             position: absolute;
             bottom: 0px;
             right: 20px;
-            padding: 20px;
             border-radius: 8px;
-            font-family: monospace;
             font-size: 14px;
             color: #fff;
             display: grid;
             gap: 8px;
             z-index: 4;
             font-weight: 500;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
         }
 
         .specs-overlay p {
@@ -328,6 +329,7 @@
             color: #fff;
             font-weight: 400;
             text-align: left;
+            text-shadow: none;
         }
 
         .arm-pair {
@@ -345,7 +347,7 @@
             background: #444;
             position: absolute;
             border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: none;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 3;
         }
@@ -369,7 +371,7 @@
 
         .arm-pair.catching .catch-arm {
             background: #555;
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+            box-shadow: none;
         }
 
         .arm-pair.catching .catch-arm:first-child {
@@ -391,7 +393,7 @@
             background: #555;
             border-radius: 4px;
             transform: translateY(-50%);
-            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+            box-shadow: none;
         }
 
         .catch-arm::after {
@@ -415,78 +417,457 @@
             background: linear-gradient(90deg, #333, #555);
             border-radius: 4px;
         }
+
+        .footer {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 20px 0;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            text-shadow: none;
+            line-height: 1.5;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Slider Styles */
+        .view-slider {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .slider-tabs {
+            display: flex;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slider-tab {
+            padding: 8px 12px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .slider-tab.active {
+            background: rgba(0, 82, 136, 0.5);
+            color: #fff;
+        }
+
+        .slider-tab:hover:not(.active) {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .view-container {
+            display: none;
+        }
+
+        .view-container.active {
+            display: block;
+        }
+
+        /* Components View Styles */
+        .components-view {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 500px 1fr 1fr;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .component-list {
+            background: rgba(0,0,0,0.5);
+            padding: 0;
+            border-radius: 8px;
+            max-width: 500px;
+            flex: 0 0 auto;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 5;
+            width: 460px;
+            grid-column: 1;
+            align-self: center;
+            overflow: hidden;
+        }
+
+        .component-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border-radius: 0;
+        }
+
+        .component-item:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .component-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .component-item:hover {
+            background: rgba(0, 162, 255, 0.2);
+            transform: translateX(5px);
+            padding-left: 15px;
+            box-shadow: 0 0 10px rgba(0, 162, 255, 0.3);
+        }
+
+        .component-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            background: #444;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .component-info {
+            flex: 1;
+        }
+
+        .component-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .component-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .booster-diagram {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            margin: 0 auto;
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column: 2 / span 2;
+        }
+        
+        /* Component highlight styles */
+        .component-highlight {
+            pointer-events: none;
+            box-shadow: none;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: none; }
+            50% { box-shadow: none; }
+            100% { box-shadow: none; }
+        }
+        
+        /* Component label styles */
+        .component-label {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 20;
+            white-space: nowrap;
+            box-shadow: none;
+        }
+        
+        /* 添加静态机械臂的伪元素样式 */
+        .static-catch-arm::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #555;
+            border-radius: 4px;
+            transform: translateY(-50%);
+            box-shadow: none;
+        }
+
+        .static-catch-arm::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 8px;
+            height: 100%;
+            background: #555;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
     <div class="main-container">
         <div class="visualization-container">
-            <div class="scene">
-                <!-- Page Header -->
-                <div class="page-header">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <!-- Page Header - Moved outside of scene -->
+                <div class="page-header" style="margin: 0;">
                     <h1 class="page-title">SpaceX Starship Booster Recovery</h1>
                     <p class="page-description">Mechazilla Chopsticks Catch Mechanism — 2024</p>
                 </div>
-
-                <!-- Launch Tower -->
-                <div class="launch-tower"></div>
                 
-                <!-- Mechazilla System -->
-                <div class="mechazilla-system">
-                    <div class="arm-pair">
-                        <div class="catch-arm">
-                            <div class="catch-arm-inner"></div>
+                <!-- View Slider - Moved outside of scene -->
+                <div class="view-slider" style="position: static; margin: 15px 20px 0 0;">
+                    <div class="slider-tabs">
+                        <div class="slider-tab active" onclick="switchView('recovery')">Recovery Process</div>
+                        <div class="slider-tab" onclick="switchView('components')">Main Components</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <!-- Components View -->
+                <div id="components-view" class="view-container">
+                    <div class="components-view">
+                        <div class="component-list">
+                            <!-- 添加悬停提示 -->
+                            <div style="padding: 10px; text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 30, 30, 0.5);">
+                                Hover to interact
+                            </div>
+                            <div class="component-item" data-component="mechazilla">
+                                <div class="component-icon">
+                                    <div style="width: 20px; height: 5px; background: #444;"></div>
+                                </div>
+                                <div class="component-info">
+                                    <div class="component-name">Mechazilla Arms</div>
+                                    <div class="component-desc">Pair of mechanical arms that catch the booster during landing</div>
+                                </div>
+                            </div>
+                            <div class="component-item" data-component="tower">
+                                <div class="component-icon">
+                                    <div style="width: 10px; height: 20px; background: #555;"></div>
+                                </div>
+                                <div class="component-info">
+                                    <div class="component-name">Launch Tower</div>
+                                    <div class="component-desc">146m tall structure supporting the catch mechanism</div>
+                                </div>
+                            </div>
+                            <div class="component-item" data-component="booster">
+                                <div class="component-icon">
+                                    <div style="width: 20px; height: 20px; background: #888; border-radius: 4px;"></div>
+                                </div>
+                                <div class="component-info">
+                                    <div class="component-name">Super Heavy Booster</div>
+                                    <div class="component-desc">First stage of Starship, 70m tall with 33 Raptor engines</div>
+                                </div>
+                            </div>
+                            <div class="component-item" data-component="grid-fins">
+                                <div class="component-icon">
+                                    <div style="width: 20px; height: 5px; background: #555; transform: rotate(45deg);"></div>
+                                </div>
+                                <div class="component-info">
+                                    <div class="component-name">Grid Fins</div>
+                                    <div class="component-desc">4 steel aerodynamic surfaces for steering during descent</div>
+                                </div>
+                            </div>
+                            <div class="component-item" data-component="engines">
+                                <div class="component-icon">
+                                    <div style="width: 10px; height: 10px; background: #ff4400; border-radius: 50%;"></div>
+                                </div>
+                                <div class="component-info">
+                                    <div class="component-name">Raptor Engines</div>
+                                    <div class="component-desc">Methane-oxygen engines used for deceleration and landing</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="catch-arm">
-                            <div class="catch-arm-inner"></div>
+                        
+                        <!-- Booster Diagram -->
+                        <div class="booster-diagram" style="width: 100%; position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-column: 2 / span 2; align-items: center; height: 100%;">
+                            <!-- Launch Tower for Components View -->
+                            <div class="tower-static" style="position: relative; width: 80px; height: 70vh; margin: 0 auto; background: linear-gradient(90deg, rgba(40,40,40,0.9), rgba(60,60,60,0.9), rgba(40,40,40,0.9)); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; z-index: 0; border-radius: 4px; grid-column: 1; align-self: center;">
+                                <!-- Tower segments -->
+                                <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+                                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+                                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+                                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+                                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+                                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+                                </div>
+                                
+                                <!-- Mechazilla Arms -->
+                                <div class="mechazilla-static" style="position: absolute; left: 50%; top: 30%; transform: translateX(-50%); width: 300px; height: 200px; z-index: 1;">
+                                    <!-- Left Arm - 完全复制recovery view的结构 -->
+                                    <div class="static-catch-arm" style="width: 40px; height: 200px; background: #444; position: absolute; left: 0; transform: translateX(-100%); border-radius: 4px; box-shadow: none;">
+                                        <div class="catch-arm-inner" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #333, #555); border-radius: 4px;"></div>
+                                    </div>
+                                    
+                                    <!-- Right Arm - 完全复制recovery view的结构 -->
+                                    <div class="static-catch-arm" style="width: 40px; height: 200px; background: #444; position: absolute; right: 0; transform: translateX(100%); border-radius: 4px; box-shadow: none;">
+                                        <div class="catch-arm-inner" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #333, #555); border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="booster-static" style="width: 150px; height: 600px; margin: 0 auto; position: relative; grid-column: 2; align-self: center;">
+                                <div class="booster-body" style="width: 100%; height: 100%; background: linear-gradient(to bottom, #666, #888); border: 3px solid #999; border-radius: 12px 12px 0 0; position: relative; overflow: visible;">
+                                    <!-- Static Grid Fins -->
+                                    <div class="grid-fin" style="position: absolute; width: 45px; height: 45px; background: #555; top: 20%; left: -50px; border: 2px solid #777; box-shadow: none; border-radius: 2px;">
+                                        <div class="grid-fin-detail" style="position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; background: repeating-linear-gradient(45deg, #444, #444 3px, #555 3px, #555 6px); border-radius: 1px; box-shadow: none;"></div>
+                                    </div>
+                                    <div class="grid-fin" style="position: absolute; width: 45px; height: 45px; background: #555; top: 20%; right: -50px; border: 2px solid #777; box-shadow: none; border-radius: 2px;">
+                                        <div class="grid-fin-detail" style="position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; background: repeating-linear-gradient(45deg, #444, #444 3px, #555 3px, #555 6px); border-radius: 1px; box-shadow: none;"></div>
+                                    </div>
+                                    
+                                    <!-- Add two more grid fins at the back (represented by slightly transparent fins) -->
+                                    <div class="grid-fin" style="position: absolute; width: 30px; height: 30px; background: #555; opacity: 0.4; top: 20%; left: -20px; transform: translateX(-50%); border: 2px solid #777; box-shadow: none; border-radius: 2px;">
+                                        <div class="grid-fin-detail" style="position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; background: repeating-linear-gradient(45deg, #444, #444 3px, #555 3px, #555 6px); border-radius: 1px; box-shadow: none;"></div>
+                                    </div>
+                                    <div class="grid-fin" style="position: absolute; width: 30px; height: 30px; background: #555; opacity: 0.4; top: 20%; right: -20px; transform: translateX(50%); border: 2px solid #777; box-shadow: none; border-radius: 2px;">
+                                        <div class="grid-fin-detail" style="position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; background: repeating-linear-gradient(45deg, #444, #444 3px, #555 3px, #555 6px); border-radius: 1px; box-shadow: none;"></div>
+                                    </div>
+                                    
+                                    <!-- Booster Details -->
+                                    <div style="position: absolute; top: 40%; left: 0; width: 100%; height: 60%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+                                        <!-- 删除助推器环 -->
+                                    </div>
+                                    
+                                    <!-- Static Engine Section -->
+                                    <div class="engine-section-static" style="position: absolute; bottom: -30px; left: 0; width: 100%; height: 50px; background: #333; border-radius: 0 0 12px 12px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                                        <!-- Engine cluster - simplified version -->
+                                        <div style="width: 80%; height: 80%; background: #444; border-radius: 0 0 8px 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px;">
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Booster -->
-                <div class="booster">
-                    <div class="booster-body">
-                        <div class="grid-fins-container"></div>
-                        <div class="engine-section">
-                            <!-- 引擎将由 JavaScript 动态创建 -->
+
+                <!-- Recovery Process View -->
+                <div id="recovery-view" class="view-container active">
+                    <!-- Launch Tower -->
+                    <div class="launch-tower"></div>
+                    
+                    <!-- Mechazilla System -->
+                    <div class="mechazilla-system">
+                        <div class="arm-pair">
+                            <div class="catch-arm">
+                                <div class="catch-arm-inner"></div>
+                            </div>
+                            <div class="catch-arm">
+                                <div class="catch-arm-inner"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <!-- Booster -->
+                    <div class="booster">
+                        <div class="booster-body">
+                            <div class="grid-fins-container"></div>
+                            <div class="engine-section">
+                                <!-- Engines will be dynamically created by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Telemetry Display -->
-                <div class="telemetry">
-                    <div>Status: <span id="status">STANDBY</span></div>
-                    <div>Altitude: <span id="altitude">---</span> m</div>
-                    <div>Velocity: <span id="velocity">---</span> m/s</div>
-                    <div>Power: <span id="power">---</span>%</div>
-                </div>
+                    <!-- Telemetry Display -->
+                    <div class="telemetry">
+                        <div>Status: <span id="status">STANDBY</span></div>
+                        <div>Altitude: <span id="altitude">---</span> m</div>
+                        <div>Velocity: <span id="velocity">---</span> m/s</div>
+                        <div>Power: <span id="power">---</span>%</div>
+                    </div>
 
-                <!-- Phase Indicator -->
-                <div class="phase-indicator">
-                    <div class="phase-step">DESCENT START</div>
-                    <div class="phase-step">GRID FINS DEPLOY</div>
-                    <div class="phase-step">LANDING BURN</div>
-                    <div class="phase-step">FINAL APPROACH</div>
-                    <div class="phase-step">HOVER FOR CATCH</div>
-                    <div class="phase-step">CATCH SECURED</div>
-                </div>
+                    <!-- Phase Indicator -->
+                    <div class="phase-indicator">
+                        <div class="phase-step">DESCENT START</div>
+                        <div class="phase-step">GRID FINS DEPLOY</div>
+                        <div class="phase-step">LANDING BURN</div>
+                        <div class="phase-step">FINAL APPROACH</div>
+                        <div class="phase-step">HOVER FOR CATCH</div>
+                        <div class="phase-step">CATCH SECURED</div>
+                    </div>
 
-                <!-- Control Panel -->
-                <div class="control-panel">
-                    <button class="control-btn" id="control-btn" onclick="toggleSequence()">Start Recovery</button>
-                </div>
-
-                <!-- Specs Overlay -->
-                <div class="specs-overlay">
-                    <p>Tower Height <span>146m</span></p>
-                    <p>Catch Height <span>70m</span></p>
-                    <p>Arm Span <span>20m</span></p>
-                    <p>Booster <span>Super Heavy</span></p>
-                    <p>Grid Fins <span>4 steel wedge fins</span></p>
-                    <p>Engines <span>33 Raptor 2</span></p>
+                    <!-- Specs Overlay -->
+                    <div class="specs-overlay">
+                        <p>Tower Height <span>146m</span></p>
+                        <p>Catch Height <span>70m</span></p>
+                        <p>Arm Span <span>20m</span></p>
+                        <p>Booster <span>Super Heavy</span></p>
+                        <p>Grid Fins <span>4 steel wedge fins</span></p>
+                        <p>Engines <span>33 Raptor 2</span></p>
+                    </div>
+                    
+                    <!-- Control Panel -->
+                    <div class="control-panel">
+                        <button class="control-btn" id="control-btn" onclick="toggleSequence()">Start Recovery</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        WindBorne Design Challenge | Designed and Coded by Anna Hsiao <br>
+        Portfolio <a href="https://annahsiao.design" target="_blank">annahsiao.design</a>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize tower segments
@@ -497,13 +878,13 @@
                 tower.appendChild(segment);
             }
 
-            // Initialize booster components
-            const boosterBody = document.querySelector('.booster-body');
+            // Initialize booster components for recovery view only
+            const boosterBody = document.querySelector('#recovery-view .booster-body');
             
-            // Add grid fins
+            // Add grid fins to recovery view booster
             const finPositions = [
-                { top: '20%', left: '-40px', rotation: 0 }, // 左侧上方
-                { top: '20%', right: '-40px', rotation: 0 }  // 右侧上方
+                { top: '20%', left: '-40px', rotation: 0 }, // Left upper fin
+                { top: '20%', right: '-40px', rotation: 0 }  // Right upper fin
             ];
 
             finPositions.forEach(pos => {
@@ -518,16 +899,318 @@
                 boosterBody.appendChild(fin);
             });
 
-            // Create engines immediately
+            // Create engines immediately for recovery view
             createEngines();
+            
+            // Initialize the view based on URL parameter or default to recovery
+            const urlParams = new URLSearchParams(window.location.search);
+            const view = urlParams.get('view') || 'recovery';
+            switchView(view);
+            
+            // Setup component hover effects
+            setupComponentHoverEffects();
         });
+        
+        // Setup hover effects for components
+        function setupComponentHoverEffects() {
+            const componentItems = document.querySelectorAll('.component-item');
+            const boosterStatic = document.querySelector('.booster-static');
+            
+            // Add hover event listeners to component items
+            componentItems.forEach(item => {
+                const componentName = item.querySelector('.component-name').textContent;
+                const componentType = item.getAttribute('data-component');
+                
+                item.addEventListener('mouseenter', () => {
+                    // Create and show the appropriate highlight based on component type
+                    switch(componentType) {
+                        case 'booster':
+                            // Highlight the entire booster body
+                            const boosterHighlight = document.createElement('div');
+                            boosterHighlight.className = 'component-highlight temp-highlight';
+                            boosterHighlight.style.position = 'absolute';
+                            boosterHighlight.style.top = '0';
+                            boosterHighlight.style.left = '0';
+                            boosterHighlight.style.width = '100%';
+                            boosterHighlight.style.height = '100%';
+                            boosterHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                            boosterHighlight.style.borderRadius = '12px 12px 0 0';
+                            boosterHighlight.style.zIndex = '10';
+                            boosterHighlight.style.pointerEvents = 'none';
+                            boosterStatic.querySelector('.booster-body').appendChild(boosterHighlight);
+                            
+                            // Add label at the bottom of the booster
+                            const boosterLabel = document.createElement('div');
+                            boosterLabel.className = 'component-label';
+                            boosterLabel.textContent = 'Super Heavy Booster';
+                            boosterLabel.style.position = 'absolute';
+                            boosterLabel.style.bottom = '-50px';
+                            boosterLabel.style.left = '50%';
+                            boosterLabel.style.transform = 'translateX(-50%)';
+                            boosterLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                            boosterLabel.style.color = '#fff';
+                            boosterLabel.style.padding = '5px 10px';
+                            boosterLabel.style.borderRadius = '4px';
+                            boosterLabel.style.fontSize = '14px';
+                            boosterLabel.style.fontWeight = 'bold';
+                            boosterLabel.style.zIndex = '20';
+                            boosterLabel.style.whiteSpace = 'nowrap';
+                            boosterLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+                            boosterLabel.style.border = 'none';
+                            boosterStatic.appendChild(boosterLabel);
+                            break;
+                            
+                        case 'grid-fins':
+                            // Highlight all grid fins
+                            const gridFins = boosterStatic.querySelectorAll('.grid-fin');
+                            gridFins.forEach(fin => {
+                                const finHighlight = document.createElement('div');
+                                finHighlight.className = 'component-highlight temp-highlight';
+                                finHighlight.style.position = '-5px';
+                                finHighlight.style.left = '-5px';
+                                finHighlight.style.width = 'calc(100% + 10px)';
+                                finHighlight.style.height = 'calc(100% + 10px)';
+                                finHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                                finHighlight.style.borderRadius = '4px';
+                                finHighlight.style.zIndex = '10';
+                                finHighlight.style.pointerEvents = 'none';
+                                fin.appendChild(finHighlight);
+                            });
+                            
+                            // Add label for Grid Fins
+                            const gridFinsLabel = document.createElement('div');
+                            gridFinsLabel.className = 'component-label';
+                            gridFinsLabel.textContent = 'Grid Fins';
+                            gridFinsLabel.style.position = 'absolute';
+                            gridFinsLabel.style.top = '20%';
+                            gridFinsLabel.style.left = '50%';
+                            gridFinsLabel.style.transform = 'translateX(-50%) translateY(-30px)';
+                            gridFinsLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                            gridFinsLabel.style.color = '#fff';
+                            gridFinsLabel.style.padding = '5px 10px';
+                            gridFinsLabel.style.borderRadius = '4px';
+                            gridFinsLabel.style.fontSize = '14px';
+                            gridFinsLabel.style.fontWeight = 'bold';
+                            gridFinsLabel.style.zIndex = '20';
+                            gridFinsLabel.style.whiteSpace = 'nowrap';
+                            gridFinsLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+                            gridFinsLabel.style.border = 'none';
+                            boosterStatic.appendChild(gridFinsLabel);
+                            break;
+                            
+                        case 'engines':
+                            // Highlight the engine section
+                            const engineSection = boosterStatic.querySelector('.engine-section-static');
+                            const engineHighlight = document.createElement('div');
+                            engineHighlight.className = 'component-highlight temp-highlight';
+                            engineHighlight.style.position = 'absolute';
+                            engineHighlight.style.top = '0';
+                            engineHighlight.style.left = '0';
+                            engineHighlight.style.width = '100%';
+                            engineHighlight.style.height = '100%';
+                            engineHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                            engineHighlight.style.borderRadius = '0 0 12px 12px';
+                            engineHighlight.style.zIndex = '10';
+                            engineHighlight.style.pointerEvents = 'none';
+                            engineSection.appendChild(engineHighlight);
+                            
+                            // Add label for Raptor Engines
+                            const engineLabel = document.createElement('div');
+                            engineLabel.className = 'component-label';
+                            engineLabel.textContent = 'Raptor Engines';
+                            engineLabel.style.position = 'absolute';
+                            engineLabel.style.bottom = '-50px';
+                            engineLabel.style.left = '50%';
+                            engineLabel.style.transform = 'translateX(-50%)';
+                            engineLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                            engineLabel.style.color = '#fff';
+                            engineLabel.style.padding = '5px 10px';
+                            engineLabel.style.borderRadius = '4px';
+                            engineLabel.style.fontSize = '14px';
+                            engineLabel.style.fontWeight = 'bold';
+                            engineLabel.style.zIndex = '20';
+                            engineLabel.style.whiteSpace = 'nowrap';
+                            engineLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+                            engineLabel.style.border = 'none';
+                            boosterStatic.appendChild(engineLabel);
+                            break;
+                            
+                        case 'mechazilla':
+                            // Get the mechazilla arms container
+                            const mechazillaContainer = document.querySelector('.mechazilla-static');
+                            const leftArm = mechazillaContainer.querySelector('div:first-child');
+                            const rightArm = mechazillaContainer.querySelector('div:last-child');
+                            
+                            // Add highlight to left arm
+                            const leftArmHighlight = document.createElement('div');
+                            leftArmHighlight.className = 'component-highlight temp-highlight';
+                            leftArmHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                            leftArmHighlight.style.position = 'absolute';
+                            leftArmHighlight.style.top = '0';
+                            leftArmHighlight.style.left = '0';
+                            leftArmHighlight.style.width = '100%';
+                            leftArmHighlight.style.height = '100%';
+                            leftArmHighlight.style.borderRadius = '4px';
+                            leftArmHighlight.style.zIndex = '10';
+                            leftArmHighlight.style.pointerEvents = 'none';
+                            leftArm.appendChild(leftArmHighlight);
+                            
+                            // Add highlight to right arm
+                            const rightArmHighlight = document.createElement('div');
+                            rightArmHighlight.className = 'component-highlight temp-highlight';
+                            rightArmHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                            rightArmHighlight.style.position = 'absolute';
+                            rightArmHighlight.style.top = '0';
+                            rightArmHighlight.style.left = '0';
+                            rightArmHighlight.style.width = '100%';
+                            rightArmHighlight.style.height = '100%';
+                            rightArmHighlight.style.borderRadius = '4px';
+                            rightArmHighlight.style.zIndex = '10';
+                            rightArmHighlight.style.pointerEvents = 'none';
+                            rightArm.appendChild(rightArmHighlight);
+                            
+                            // Add label for Mechazilla Arms
+                            const mechazillaLabel = document.createElement('div');
+                            mechazillaLabel.className = 'component-label';
+                            mechazillaLabel.textContent = 'Mechazilla Arms';
+                            mechazillaLabel.style.position = 'absolute';
+                            mechazillaLabel.style.top = '50%';
+                            mechazillaLabel.style.left = '50%';
+                            mechazillaLabel.style.transform = 'translate(-50%, -50%)';
+                            mechazillaLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                            mechazillaLabel.style.color = '#fff';
+                            mechazillaLabel.style.padding = '5px 10px';
+                            mechazillaLabel.style.borderRadius = '4px';
+                            mechazillaLabel.style.fontSize = '14px';
+                            mechazillaLabel.style.fontWeight = 'bold';
+                            mechazillaLabel.style.zIndex = '20';
+                            mechazillaLabel.style.whiteSpace = 'nowrap';
+                            mechazillaLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+                            mechazillaLabel.style.border = 'none';
+                            mechazillaContainer.appendChild(mechazillaLabel);
+                            break;
+                            
+                        case 'tower':
+                            // Add a temporary highlight for tower
+                            const towerHighlight = document.createElement('div');
+                            towerHighlight.className = 'component-highlight temp-highlight';
+                            towerHighlight.style.position = 'absolute';
+                            towerHighlight.style.top = '0';
+                            towerHighlight.style.left = '0';
+                            towerHighlight.style.width = '100%';
+                            towerHighlight.style.height = '100%';
+                            towerHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                            towerHighlight.style.borderRadius = '4px';
+                            towerHighlight.style.zIndex = '10';
+                            towerHighlight.style.pointerEvents = 'none';
+                            document.querySelector('.tower-static').appendChild(towerHighlight);
+                            
+                            // Add label for Launch Tower
+                            const towerLabel = document.createElement('div');
+                            towerLabel.className = 'component-label';
+                            towerLabel.textContent = 'Launch Tower';
+                            towerLabel.style.position = 'absolute';
+                            towerLabel.style.top = '50%';
+                            towerLabel.style.left = '50%';
+                            towerLabel.style.transform = 'translate(-50%, -50%)';
+                            towerLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                            towerLabel.style.color = '#fff';
+                            towerLabel.style.padding = '5px 10px';
+                            towerLabel.style.borderRadius = '4px';
+                            towerLabel.style.fontSize = '14px';
+                            towerLabel.style.fontWeight = 'bold';
+                            towerLabel.style.zIndex = '20';
+                            towerLabel.style.whiteSpace = 'nowrap';
+                            towerLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+                            towerLabel.style.border = 'none';
+                            document.querySelector('.tower-static').appendChild(towerLabel);
+                            break;
+                    }
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    // Remove all temporary highlights and labels
+                    document.querySelectorAll('.temp-highlight, .component-label').forEach(el => el.remove());
+                });
+            });
+        }
+        
+        // Helper function to add component labels
+        function addComponentLabel(parent, text, top, left, centered = false) {
+            const label = document.createElement('div');
+            label.className = 'component-label';
+            label.textContent = text;
+            label.style.position = 'absolute';
+            label.style.top = top;
+            label.style.left = centered ? '50%' : left;
+            if (centered) {
+                label.style.transform = 'translateX(-50%)';
+            }
+            label.style.background = 'rgba(0, 0, 0, 0.8)';
+            label.style.color = '#fff';
+            label.style.padding = '5px 10px';
+            label.style.borderRadius = '4px';
+            label.style.fontSize = '14px';
+            label.style.fontWeight = 'bold';
+            label.style.zIndex = '20';
+            label.style.whiteSpace = 'nowrap';
+            label.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+            label.style.border = 'none';
+            parent.appendChild(label);
+            return label;
+        }
+        
+        // Helper function to create highlight elements
+        function createHighlight(parent, className, top, left, width, height) {
+            const highlight = document.createElement('div');
+            highlight.className = 'component-highlight ' + className;
+            highlight.style.position = 'absolute';
+            highlight.style.top = top;
+            highlight.style.left = left;
+            highlight.style.width = width;
+            highlight.style.height = height;
+            highlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+            highlight.style.borderRadius = '4px';
+            highlight.style.opacity = '0';
+            highlight.style.transition = 'opacity 0.3s ease';
+            highlight.style.zIndex = '10';
+            parent.appendChild(highlight);
+            return highlight;
+        }
 
+        // View switching function
+        function switchView(viewName) {
+            // Update tabs
+            const tabs = document.querySelectorAll('.slider-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.textContent.toLowerCase().includes(viewName)) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Update view containers
+            const views = document.querySelectorAll('.view-container');
+            views.forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            document.getElementById(viewName + '-view').classList.add('active');
+            
+            // Update URL parameter
+            const url = new URL(window.location);
+            url.searchParams.set('view', viewName);
+            window.history.pushState({}, '', url);
+        }
+        
         // Global variables
         let isAnimating = false;
 
         // Engine management functions
         function createEngines() {
-            const engineSection = document.querySelector('.engine-section');
+            const engineSection = document.querySelector('#recovery-view .engine-section');
+            if (!engineSection) return;
+            
             engineSection.innerHTML = '';
             
             // Create engines in a 3x3 grid
@@ -539,7 +1222,7 @@
         }
 
         function activateEngines(active) {
-            const engines = document.querySelectorAll('.engine');
+            const engines = document.querySelectorAll('#recovery-view .engine');
             engines.forEach(engine => {
                 if (active) {
                     engine.classList.add('active');
@@ -554,13 +1237,13 @@
             const btn = document.getElementById('control-btn');
             
             if (!isAnimating) {
-                // 开始动画
+                // Start animation
                 isAnimating = true;
                 btn.textContent = 'Recovering...';
-                btn.disabled = true; // 禁用按钮，防止多次点击
+                btn.disabled = true; // Disable button to prevent multiple clicks
                 startRecoverySequence();
             } else {
-                // 重置动画
+                // Reset animation
                 resetSequence();
             }
         }
@@ -569,22 +1252,22 @@
             const booster = document.querySelector('.booster');
             const armPair = document.querySelector('.arm-pair');
             
-            // 重置到初始状态
-            resetSequence(false); // 传递 false 表示不重置按钮文本
+            // Reset to initial state
+            resetSequence(false); // Pass false to not reset button text
             isAnimating = true;
             
-            // 使火箭可见
+            // Make rocket visible
             booster.style.display = 'block';
             booster.style.opacity = '1';
             
-            // 步骤 1: 初始下降
+            // Step 1: Initial descent
             setTimeout(() => {
                 updateStatus('DESCENT STARTED', '50000', '-100', '0');
                 document.querySelector('.phase-step:nth-child(1)').classList.add('active');
                 booster.style.bottom = '150%';
                 booster.style.transform = 'translateX(-50%) rotate(15deg)';
                 
-                // 步骤 2: 网格鳍展开
+                // Step 2: Grid fins deploy
                 setTimeout(() => {
                     if (!isAnimating) return;
                     updateStatus('GRID FINS DEPLOYED', '30000', '-80', '10');
@@ -593,7 +1276,7 @@
                     booster.style.transform = 'translateX(-50%) rotate(10deg)';
                     activateEngines(true);
                     
-                    // 步骤 3: 着陆燃烧
+                    // Step 3: Landing burn
                     setTimeout(() => {
                         if (!isAnimating) return;
                         updateStatus('LANDING BURN', '15000', '-50', '40');
@@ -601,7 +1284,7 @@
                         booster.style.bottom = '70%';
                         booster.style.transform = 'translateX(-50%) rotate(5deg)';
                         
-                        // 步骤 4: 最终接近
+                        // Step 4: Final approach
                         setTimeout(() => {
                             if (!isAnimating) return;
                             updateStatus('FINAL APPROACH', '5000', '-20', '30');
@@ -610,7 +1293,7 @@
                             booster.style.transform = 'translateX(-50%) rotate(2deg)';
                             armPair.style.width = '240px';
                             
-                            // 步骤 5: 悬停等待捕捉
+                            // Step 5: Hover for catch
                             setTimeout(() => {
                                 if (!isAnimating) return;
                                 updateStatus('HOVER FOR CATCH', '1000', '-5', '20');
@@ -620,7 +1303,7 @@
                                 armPair.style.width = '200px';
                                 armPair.classList.add('catching');
                                 
-                                // 步骤 6: 捕捉完成
+                                // Step 6: Catch secured
                                 setTimeout(() => {
                                     if (!isAnimating) return;
                                     updateStatus('CATCH SECURED', '0', '0', '0');
@@ -628,7 +1311,7 @@
                                     armPair.style.width = '160px';
                                     setTimeout(() => {
                                         activateEngines(false);
-                                        // 动画完成，更新按钮状态
+                                        // Animation complete, update button state
                                         const btn = document.getElementById('control-btn');
                                         btn.textContent = 'Restart';
                                         btn.disabled = false;
@@ -645,28 +1328,28 @@
             const booster = document.querySelector('.booster');
             const armPair = document.querySelector('.arm-pair');
             
-            // 重置火箭位置
+            // Reset rocket position
             booster.style.bottom = '200%';
             booster.style.transform = 'translateX(-50%) rotate(15deg)';
             
-            // 重置机械臂
+            // Reset mechanical arm
             armPair.style.width = '300px';
             armPair.classList.remove('catching');
             
-            // 关闭引擎
+            // Turn off engines
             activateEngines(false);
             
-            // 重置状态
+            // Reset state
             isAnimating = false;
             
-            // 重置按钮文本（如果需要）
+            // Reset button text (if needed)
             if (resetButton) {
                 const btn = document.getElementById('control-btn');
                 btn.textContent = 'Start Recovery';
                 btn.disabled = false;
             }
             
-            // 重置状态显示
+            // Reset state display
             updateStatus('STANDBY', '---', '---', '---');
             document.querySelectorAll('.phase-step').forEach(step => {
                 step.classList.remove('active');
