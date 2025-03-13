@@ -17,18 +17,20 @@
             background: url('./background image.jpg') center center/cover no-repeat fixed;
             color: #fff;
             overflow-x: hidden;
-            min-height: 90vh;
+            min-height: 100vh;
+            font-size: 16px;
         }
 
         .main-container {
-            min-height: 90vh;
-            padding: 2rem;
+            min-height: 100vh;
+            padding: 1rem;
             position: relative;
         }
 
         .visualization-container {
             position: relative;
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -268,19 +270,26 @@
             background: rgba(0,0,0,0.5);
             padding: 15px;
             border-radius: 8px;
+            font-size: 14px;
+            color: #0f0;
+            display: grid;
+            gap: 10px;
         }
 
         .phase-step {
-            margin: 10px 0;
+            margin: 0;
             padding-left: 20px;
             position: relative;
-            opacity: 0.5;
+            opacity: 0.7;
             transition: opacity 0.3s ease;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .phase-step.active {
             opacity: 1;
             color: #0f0;
+            font-weight: normal;
         }
 
         .phase-step::before {
@@ -467,6 +476,7 @@
             transition: all 0.3s ease;
             user-select: none;
             white-space: nowrap;
+            font-size: 0.85rem;
         }
 
         .slider-tab.active {
@@ -504,7 +514,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             z-index: 100;
-            width: 380px;
+            width: 360px;
             overflow-y: auto;
             max-height: 80vh;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -536,9 +546,10 @@
 
         .component-item:hover {
             background: rgba(0, 162, 255, 0.2);
-            transform: translateX(5px);
-            padding-left: 15px;
-            box-shadow: 0 0 10px rgba(0, 162, 255, 0.3);
+            transform: translateX(0);
+            padding-left: 10px;
+            box-shadow: none;
+            border-left: 5px solid rgba(0, 162, 255, 0.8);
         }
 
         .component-icon {
@@ -593,6 +604,7 @@
             box-shadow: none;
             animation: pulse 2s infinite;
             z-index: 10;
+            box-sizing: border-box;
         }
         
         @keyframes pulse {
@@ -643,12 +655,163 @@
             transform: translateX(-50%);
             z-index: 1;
         }
+
+        /* Add responsive media queries */
+        @media (max-width: 1200px) {
+            .booster-static {
+                right: 10% !important;
+            }
+            
+            .tower-static {
+                left: 10% !important;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .booster-static {
+                right: 20% !important;
+                transform: translateY(-50%) scale(0.9) !important;
+            }
+            
+            .tower-static {
+                left: 20% !important;
+                transform: translateY(-50%) scale(0.9) !important;
+            }
+            
+            .component-list {
+                width: 320px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .page-title {
+                font-size: 1.2rem;
+            }
+            
+            .page-description {
+                font-size: 0.8rem;
+            }
+            
+            .booster-static {
+                right: 25% !important;
+                transform: translateY(-50%) scale(0.8) !important;
+            }
+            
+            .tower-static {
+                left: 25% !important;
+                transform: translateY(-50%) scale(0.8) !important;
+            }
+            
+            .visualization-container > div:first-child {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .view-slider {
+                margin: 10px 0 !important;
+            }
+            
+            .specs-overlay {
+                font-size: 12px;
+            }
+            
+            .telemetry, .phase-indicator {
+                font-size: 12px;
+                padding: 10px;
+            }
+            
+            .slider-tab {
+                font-size: 0.8rem;
+            }
+            
+            .component-list {
+                width: 280px !important;
+                max-height: 70vh;
+            }
+            
+            .component-name {
+                font-size: 1rem;
+            }
+            
+            .component-desc {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-container {
+                padding: 0.5rem;
+            }
+            
+            .booster-static {
+                right: 30% !important;
+                transform: translateY(-50%) scale(0.7) !important;
+            }
+            
+            .tower-static {
+                left: 30% !important;
+                transform: translateY(-50%) scale(0.7) !important;
+            }
+            
+            .specs-overlay {
+                display: none;
+            }
+            
+            .control-btn {
+                min-width: 120px;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .slider-tab {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+            
+            .component-list {
+                width: 250px !important;
+            }
+            
+            .component-icon {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .telemetry {
+                top: 5%;
+            }
+            
+            .phase-indicator {
+                right: 10px;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .scene {
+                height: 85vh;
+            }
+            
+            .components-view {
+                height: 85vh;
+            }
+            
+            .launch-tower {
+                height: 60%;
+            }
+            
+            .control-panel {
+                bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="main-container">
         <div class="visualization-container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; margin-top: 20px;flex-wrap: wrap;">
                 <!-- Page Header - Moved outside of scene -->
                 <div class="page-header" style="margin: 0;">
                     <h1 class="page-title">SpaceX Starship Booster Recovery</h1>
@@ -668,7 +831,7 @@
                 <!-- Components View -->
                 <div id="components-view" class="view-container">
                     <div class="components-view">
-                        <div class="component-list" style="max-height: 80vh; overflow-y: auto; width: 380px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); z-index: 100;">
+                        <div class="component-list" style="max-height: 80vh; overflow-y: auto; width: 380px; z-index: 100;">
                             <!-- 添加悬停提示 -->
                             <div style="padding: 10px; text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 30, 30, 0.5); position: sticky; top: 0; z-index: 10;">
                                 Hover to interact
@@ -772,27 +935,9 @@
                                     </div>
                                     
                                     <!-- Static Engine Section -->
-                                    <div class="engine-section-static" style="position: absolute; bottom: -30px; left: 0; width: 100%; height: 50px; background: #333; border-radius: 0 0 12px 12px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                                    <div class="engine-section-static" style="position: absolute; bottom: -30px; left: 0; width: 100%; height: 50px; background: #333; border-radius: 0 0 12px 12px; display: flex; justify-content: center; align-items: center; overflow: visible;">
                                         <!-- Engine cluster - simplified version -->
                                         <div style="width: 80%; height: 80%; background: #444; border-radius: 0 0 8px 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px;">
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
-                                            <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
                                             <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
                                             <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
                                             <div style="width: 10px; height: 10px; background: #666; border: 1px solid #888; border-radius: 50%; margin: auto;"></div>
@@ -920,6 +1065,10 @@
             
             // Setup component hover effects
             setupComponentHoverEffects();
+            
+            // Add responsive behavior
+            handleResponsiveLayout();
+            window.addEventListener('resize', handleResponsiveLayout);
         });
         
         // Setup hover effects for components
@@ -932,212 +1081,19 @@
                 const componentName = item.querySelector('.component-name').textContent;
                 const componentType = item.getAttribute('data-component');
                 
+                // Use touch events for mobile devices
+                item.addEventListener('touchstart', function(e) {
+                    // Remove any existing highlights first
+                    document.querySelectorAll('.temp-highlight, .component-label').forEach(el => el.remove());
+                    
+                    // Create the appropriate highlight
+                    createHighlightForComponent(componentType, boosterStatic);
+                    e.preventDefault(); // Prevent scrolling on touch
+                }, {passive: false});
+                
                 item.addEventListener('mouseenter', () => {
-                    // Create and show the appropriate highlight based on component type
-                    switch(componentType) {
-                        case 'booster':
-                            // Highlight the entire booster body
-                            const boosterHighlight = document.createElement('div');
-                            boosterHighlight.className = 'component-highlight temp-highlight';
-                            boosterHighlight.style.position = 'absolute';
-                            boosterHighlight.style.top = '0';
-                            boosterHighlight.style.left = '0';
-                            boosterHighlight.style.width = '100%';
-                            boosterHighlight.style.height = '100%';
-                            boosterHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-                            boosterHighlight.style.borderRadius = '12px 12px 0 0';
-                            boosterHighlight.style.zIndex = '10';
-                            boosterHighlight.style.pointerEvents = 'none';
-                            boosterStatic.querySelector('.booster-body').appendChild(boosterHighlight);
-                            
-                            // Add label at the bottom of the booster
-                            const boosterLabel = document.createElement('div');
-                            boosterLabel.className = 'component-label';
-                            boosterLabel.textContent = 'Super Heavy Booster';
-                            boosterLabel.style.position = 'absolute';
-                            boosterLabel.style.bottom = '-50px';
-                            boosterLabel.style.left = '50%';
-                            boosterLabel.style.transform = 'translateX(-50%)';
-                            boosterLabel.style.background = 'rgba(0, 0, 0, 0.8)';
-                            boosterLabel.style.color = '#fff';
-                            boosterLabel.style.padding = '5px 10px';
-                            boosterLabel.style.borderRadius = '4px';
-                            boosterLabel.style.fontSize = '14px';
-                            boosterLabel.style.fontWeight = 'bold';
-                            boosterLabel.style.zIndex = '20';
-                            boosterLabel.style.whiteSpace = 'nowrap';
-                            boosterLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-                            boosterLabel.style.border = 'none';
-                            boosterStatic.appendChild(boosterLabel);
-                            break;
-                            
-                        case 'grid-fins':
-                            // Highlight all grid fins
-                            const gridFins = boosterStatic.querySelectorAll('.grid-fin');
-                            gridFins.forEach(fin => {
-                                const finHighlight = document.createElement('div');
-                                finHighlight.className = 'component-highlight temp-highlight';
-                                finHighlight.style.position = 'absolute';
-                                finHighlight.style.top = '-5px';
-                                finHighlight.style.left = '-5px';
-                                finHighlight.style.width = 'calc(100% + 10px)';
-                                finHighlight.style.height = 'calc(100% + 10px)';
-                                finHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-                                finHighlight.style.borderRadius = '4px';
-                                finHighlight.style.zIndex = '10';
-                                finHighlight.style.pointerEvents = 'none';
-                                fin.appendChild(finHighlight);
-                            });
-                            
-                            // Add label for Grid Fins
-                            const gridFinsLabel = document.createElement('div');
-                            gridFinsLabel.className = 'component-label';
-                            gridFinsLabel.textContent = 'Grid Fins';
-                            gridFinsLabel.style.position = 'absolute';
-                            gridFinsLabel.style.top = '20%';
-                            gridFinsLabel.style.left = '50%';
-                            gridFinsLabel.style.transform = 'translateX(-50%) translateY(-30px)';
-                            gridFinsLabel.style.background = 'rgba(0, 0, 0, 0.8)';
-                            gridFinsLabel.style.color = '#fff';
-                            gridFinsLabel.style.padding = '5px 10px';
-                            gridFinsLabel.style.borderRadius = '4px';
-                            gridFinsLabel.style.fontSize = '14px';
-                            gridFinsLabel.style.fontWeight = 'bold';
-                            gridFinsLabel.style.zIndex = '20';
-                            gridFinsLabel.style.whiteSpace = 'nowrap';
-                            gridFinsLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-                            gridFinsLabel.style.border = 'none';
-                            boosterStatic.appendChild(gridFinsLabel);
-                            break;
-                            
-                        case 'engines':
-                            // Highlight the engine section
-                            const engineSection = boosterStatic.querySelector('.engine-section-static');
-                            const engineHighlight = document.createElement('div');
-                            engineHighlight.className = 'component-highlight temp-highlight';
-                            engineHighlight.style.position = 'absolute';
-                            engineHighlight.style.top = '0';
-                            engineHighlight.style.left = '0';
-                            engineHighlight.style.width = '100%';
-                            engineHighlight.style.height = '100%';
-                            engineHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-                            engineHighlight.style.borderRadius = '0 0 12px 12px';
-                            engineHighlight.style.zIndex = '10';
-                            engineHighlight.style.pointerEvents = 'none';
-                            engineSection.appendChild(engineHighlight);
-                            
-                            // Add label for Raptor Engines
-                            const engineLabel = document.createElement('div');
-                            engineLabel.className = 'component-label';
-                            engineLabel.textContent = 'Raptor Engines';
-                            engineLabel.style.position = 'absolute';
-                            engineLabel.style.bottom = '-50px';
-                            engineLabel.style.left = '50%';
-                            engineLabel.style.transform = 'translateX(-50%)';
-                            engineLabel.style.background = 'rgba(0, 0, 0, 0.8)';
-                            engineLabel.style.color = '#fff';
-                            engineLabel.style.padding = '5px 10px';
-                            engineLabel.style.borderRadius = '4px';
-                            engineLabel.style.fontSize = '14px';
-                            engineLabel.style.fontWeight = 'bold';
-                            engineLabel.style.zIndex = '20';
-                            engineLabel.style.whiteSpace = 'nowrap';
-                            engineLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-                            engineLabel.style.border = 'none';
-                            boosterStatic.appendChild(engineLabel);
-                            break;
-                            
-                        case 'mechazilla':
-                            // Get the mechazilla arms container
-                            const mechazillaContainer = document.querySelector('.mechazilla-static');
-                            const leftArm = mechazillaContainer.querySelector('div:first-child');
-                            const rightArm = mechazillaContainer.querySelector('div:last-child');
-                            
-                            // Add highlight to left arm
-                            const leftArmHighlight = document.createElement('div');
-                            leftArmHighlight.className = 'component-highlight temp-highlight';
-                            leftArmHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-                            leftArmHighlight.style.position = 'absolute';
-                            leftArmHighlight.style.top = '0';
-                            leftArmHighlight.style.left = '0';
-                            leftArmHighlight.style.width = '100%';
-                            leftArmHighlight.style.height = '100%';
-                            leftArmHighlight.style.borderRadius = '4px';
-                            leftArmHighlight.style.zIndex = '10';
-                            leftArmHighlight.style.pointerEvents = 'none';
-                            leftArm.appendChild(leftArmHighlight);
-                            
-                            // Add highlight to right arm
-                            const rightArmHighlight = document.createElement('div');
-                            rightArmHighlight.className = 'component-highlight temp-highlight';
-                            rightArmHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-                            rightArmHighlight.style.position = 'absolute';
-                            rightArmHighlight.style.top = '0';
-                            rightArmHighlight.style.left = '0';
-                            rightArmHighlight.style.width = '100%';
-                            rightArmHighlight.style.height = '100%';
-                            rightArmHighlight.style.borderRadius = '4px';
-                            rightArmHighlight.style.zIndex = '10';
-                            rightArmHighlight.style.pointerEvents = 'none';
-                            rightArm.appendChild(rightArmHighlight);
-                            
-                            // Add label for Mechazilla Arms
-                            const mechazillaLabel = document.createElement('div');
-                            mechazillaLabel.className = 'component-label';
-                            mechazillaLabel.textContent = 'Mechazilla Arms';
-                            mechazillaLabel.style.position = 'absolute';
-                            mechazillaLabel.style.top = '50%';
-                            mechazillaLabel.style.left = '50%';
-                            mechazillaLabel.style.transform = 'translate(-50%, -50%)';
-                            mechazillaLabel.style.background = 'rgba(0, 0, 0, 0.8)';
-                            mechazillaLabel.style.color = '#fff';
-                            mechazillaLabel.style.padding = '5px 10px';
-                            mechazillaLabel.style.borderRadius = '4px';
-                            mechazillaLabel.style.fontSize = '14px';
-                            mechazillaLabel.style.fontWeight = 'bold';
-                            mechazillaLabel.style.zIndex = '20';
-                            mechazillaLabel.style.whiteSpace = 'nowrap';
-                            mechazillaLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-                            mechazillaLabel.style.border = 'none';
-                            mechazillaContainer.appendChild(mechazillaLabel);
-                            break;
-                            
-                        case 'tower':
-                            // Add a temporary highlight for tower
-                            const towerHighlight = document.createElement('div');
-                            towerHighlight.className = 'component-highlight temp-highlight';
-                            towerHighlight.style.position = 'absolute';
-                            towerHighlight.style.top = '0';
-                            towerHighlight.style.left = '0';
-                            towerHighlight.style.width = '100%';
-                            towerHighlight.style.height = '100%';
-                            towerHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-                            towerHighlight.style.borderRadius = '4px';
-                            towerHighlight.style.zIndex = '10';
-                            towerHighlight.style.pointerEvents = 'none';
-                            document.querySelector('.tower-static').appendChild(towerHighlight);
-                            
-                            // Add label for Launch Tower
-                            const towerLabel = document.createElement('div');
-                            towerLabel.className = 'component-label';
-                            towerLabel.textContent = 'Launch Tower';
-                            towerLabel.style.position = 'absolute';
-                            towerLabel.style.top = '50%';
-                            towerLabel.style.left = '50%';
-                            towerLabel.style.transform = 'translate(-50%, -50%)';
-                            towerLabel.style.background = 'rgba(0, 0, 0, 0.8)';
-                            towerLabel.style.color = '#fff';
-                            towerLabel.style.padding = '5px 10px';
-                            towerLabel.style.borderRadius = '4px';
-                            towerLabel.style.fontSize = '14px';
-                            towerLabel.style.fontWeight = 'bold';
-                            towerLabel.style.zIndex = '20';
-                            towerLabel.style.whiteSpace = 'nowrap';
-                            towerLabel.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-                            towerLabel.style.border = 'none';
-                            document.querySelector('.tower-static').appendChild(towerLabel);
-                            break;
-                    }
+                    // Create the appropriate highlight
+                    createHighlightForComponent(componentType, boosterStatic);
                 });
                 
                 item.addEventListener('mouseleave', () => {
@@ -1145,51 +1101,227 @@
                     document.querySelectorAll('.temp-highlight, .component-label').forEach(el => el.remove());
                 });
             });
+            
+            // Add a document-wide touch listener to remove highlights when touching elsewhere
+            document.addEventListener('touchstart', function(e) {
+                if (!e.target.closest('.component-item')) {
+                    document.querySelectorAll('.temp-highlight, .component-label').forEach(el => el.remove());
+                }
+            }, {passive: true});
         }
         
-        // Helper function to add component labels
-        function addComponentLabel(parent, text, top, left, centered = false) {
-            const label = document.createElement('div');
-            label.className = 'component-label';
-            label.textContent = text;
-            label.style.position = 'absolute';
-            label.style.top = top;
-            label.style.left = centered ? '50%' : left;
-            if (centered) {
-                label.style.transform = 'translateX(-50%)';
+        // Create highlight for a specific component type
+        function createHighlightForComponent(componentType, boosterStatic) {
+            // Adjust label position based on screen size
+            const isMobile = window.innerWidth < 768;
+            const labelOffset = isMobile ? '-25px' : '-30px';
+            const labelZIndex = 120;
+            
+            switch(componentType) {
+                case 'booster':
+                    // Highlight the entire booster body
+                    const boosterHighlight = document.createElement('div');
+                    boosterHighlight.className = 'component-highlight temp-highlight';
+                    boosterHighlight.style.position = 'absolute';
+                    boosterHighlight.style.top = '0';
+                    boosterHighlight.style.left = '0';
+                    boosterHighlight.style.width = '100%';
+                    boosterHighlight.style.height = '100%';
+                    boosterHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                    boosterHighlight.style.borderRadius = '12px 12px 0 0';
+                    boosterHighlight.style.zIndex = '10';
+                    boosterHighlight.style.pointerEvents = 'none';
+                    boosterStatic.querySelector('.booster-body').appendChild(boosterHighlight);
+                    
+                    // Add label at the center of the booster
+                    const boosterLabel = document.createElement('div');
+                    boosterLabel.className = 'component-label';
+                    boosterLabel.textContent = 'Super Heavy Booster';
+                    boosterLabel.style.position = 'absolute';
+                    boosterLabel.style.top = '50%';
+                    boosterLabel.style.left = '50%';
+                    boosterLabel.style.transform = 'translate(-50%, -50%)';
+                    boosterLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                    boosterLabel.style.color = '#fff';
+                    boosterLabel.style.padding = '5px 10px';
+                    boosterLabel.style.borderRadius = '4px';
+                    boosterLabel.style.fontSize = isMobile ? '12px' : '14px';
+                    boosterLabel.style.fontWeight = 'bold';
+                    boosterLabel.style.zIndex = labelZIndex;
+                    boosterLabel.style.whiteSpace = 'nowrap';
+                    boosterLabel.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
+                    boosterLabel.style.border = 'none';
+                    boosterStatic.appendChild(boosterLabel);
+                    break;
+                case 'grid-fins':
+                    // Highlight all grid fins
+                    const gridFins = boosterStatic.querySelectorAll('.grid-fin');
+                    gridFins.forEach(fin => {
+                        const finHighlight = document.createElement('div');
+                        finHighlight.className = 'component-highlight temp-highlight';
+                        finHighlight.style.position = 'absolute';
+                        finHighlight.style.top = '-5px';
+                        finHighlight.style.left = '-5px';
+                        finHighlight.style.width = 'calc(100% + 10px)';
+                        finHighlight.style.height = 'calc(100% + 10px)';
+                        finHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                        finHighlight.style.borderRadius = '4px';
+                        finHighlight.style.zIndex = '10';
+                        finHighlight.style.pointerEvents = 'none';
+                        fin.appendChild(finHighlight);
+                    });
+                    
+                    // Add label for Grid Fins
+                    const gridFinsLabel = document.createElement('div');
+                    gridFinsLabel.className = 'component-label';
+                    gridFinsLabel.textContent = 'Grid Fins';
+                    gridFinsLabel.style.position = 'absolute';
+                    gridFinsLabel.style.top = '20%';
+                    gridFinsLabel.style.left = '50%';
+                    gridFinsLabel.style.transform = 'translateX(-50%) translateY(-30px)';
+                    gridFinsLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                    gridFinsLabel.style.color = '#fff';
+                    gridFinsLabel.style.padding = '5px 10px';
+                    gridFinsLabel.style.borderRadius = '4px';
+                    gridFinsLabel.style.fontSize = '14px';
+                    gridFinsLabel.style.fontWeight = 'bold';
+                    gridFinsLabel.style.zIndex = labelZIndex;
+                    gridFinsLabel.style.whiteSpace = 'nowrap';
+                    gridFinsLabel.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
+                    gridFinsLabel.style.border = 'none';
+                    boosterStatic.appendChild(gridFinsLabel);
+                    break;
+                case 'engines':
+                    // Highlight the engine section
+                    const engineSection = boosterStatic.querySelector('.engine-section-static');
+                    const engineHighlight = document.createElement('div');
+                    engineHighlight.className = 'component-highlight temp-highlight';
+                    engineHighlight.style.position = 'absolute';
+                    engineHighlight.style.top = '-5px';
+                    engineHighlight.style.left = '-5px';
+                    engineHighlight.style.width = 'calc(100% + 10px)';
+                    engineHighlight.style.height = 'calc(100% + 10px)';
+                    engineHighlight.style.border = '3px dashed #00A2FF';
+                    engineHighlight.style.borderRadius = '0 0 12px 12px';
+                    engineHighlight.style.zIndex = '100';
+                    engineHighlight.style.pointerEvents = 'none';
+                    engineHighlight.style.background = 'transparent';
+                    // 添加一些更明显的样式
+                    engineHighlight.style.boxShadow = '0 0 5px rgba(0, 162, 255, 0.5)';
+                    engineSection.appendChild(engineHighlight);
+                    
+                    // Add label for Raptor Engines
+                    const engineLabel = document.createElement('div');
+                    engineLabel.className = 'component-label';
+                    engineLabel.textContent = 'Raptor Engines';
+                    engineLabel.style.position = 'absolute';
+                    engineLabel.style.bottom = '-50px';
+                    engineLabel.style.left = '50%';
+                    engineLabel.style.transform = 'translateX(-50%)';
+                    engineLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                    engineLabel.style.color = '#fff';
+                    engineLabel.style.padding = '5px 10px';
+                    engineLabel.style.borderRadius = '4px';
+                    engineLabel.style.fontSize = '14px';
+                    engineLabel.style.fontWeight = 'bold';
+                    engineLabel.style.zIndex = labelZIndex;
+                    engineLabel.style.whiteSpace = 'nowrap';
+                    engineLabel.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
+                    engineLabel.style.border = 'none';
+                    boosterStatic.appendChild(engineLabel);
+                    break;
+                case 'mechazilla':
+                    // Get the mechazilla arms container
+                    const mechazillaContainer = document.querySelector('.mechazilla-static');
+                    const leftArm = mechazillaContainer.querySelector('div:first-child');
+                    const rightArm = mechazillaContainer.querySelector('div:last-child');
+                    
+                    // Add highlight to left arm
+                    const leftArmHighlight = document.createElement('div');
+                    leftArmHighlight.className = 'component-highlight temp-highlight';
+                    leftArmHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                    leftArmHighlight.style.position = 'absolute';
+                    leftArmHighlight.style.top = '0';
+                    leftArmHighlight.style.left = '0';
+                    leftArmHighlight.style.width = '100%';
+                    leftArmHighlight.style.height = '100%';
+                    leftArmHighlight.style.borderRadius = '4px';
+                    leftArmHighlight.style.zIndex = '10';
+                    leftArmHighlight.style.pointerEvents = 'none';
+                    leftArm.appendChild(leftArmHighlight);
+                    
+                    // Add highlight to right arm
+                    const rightArmHighlight = document.createElement('div');
+                    rightArmHighlight.className = 'component-highlight temp-highlight';
+                    rightArmHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                    rightArmHighlight.style.position = 'absolute';
+                    rightArmHighlight.style.top = '0';
+                    rightArmHighlight.style.left = '0';
+                    rightArmHighlight.style.width = '100%';
+                    rightArmHighlight.style.height = '100%';
+                    rightArmHighlight.style.borderRadius = '4px';
+                    rightArmHighlight.style.zIndex = '10';
+                    rightArmHighlight.style.pointerEvents = 'none';
+                    rightArm.appendChild(rightArmHighlight);
+                    
+                    // Add label for Mechazilla Arms
+                    const mechazillaLabel = document.createElement('div');
+                    mechazillaLabel.className = 'component-label';
+                    mechazillaLabel.textContent = 'Mechazilla Arms';
+                    mechazillaLabel.style.position = 'absolute';
+                    mechazillaLabel.style.top = '50%';
+                    mechazillaLabel.style.left = '50%';
+                    mechazillaLabel.style.transform = 'translate(-50%, -50%)';
+                    mechazillaLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                    mechazillaLabel.style.color = '#fff';
+                    mechazillaLabel.style.padding = '5px 10px';
+                    mechazillaLabel.style.borderRadius = '4px';
+                    mechazillaLabel.style.fontSize = '14px';
+                    mechazillaLabel.style.fontWeight = 'bold';
+                    mechazillaLabel.style.zIndex = labelZIndex;
+                    mechazillaLabel.style.whiteSpace = 'nowrap';
+                    mechazillaLabel.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
+                    mechazillaLabel.style.border = 'none';
+                    mechazillaContainer.appendChild(mechazillaLabel);
+                    break;
+                case 'tower':
+                    // Add a temporary highlight for tower
+                    const towerHighlight = document.createElement('div');
+                    towerHighlight.className = 'component-highlight temp-highlight';
+                    towerHighlight.style.position = 'absolute';
+                    towerHighlight.style.top = '0';
+                    towerHighlight.style.left = '0';
+                    towerHighlight.style.width = '100%';
+                    towerHighlight.style.height = '100%';
+                    towerHighlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
+                    towerHighlight.style.borderRadius = '4px';
+                    towerHighlight.style.zIndex = '10';
+                    towerHighlight.style.pointerEvents = 'none';
+                    document.querySelector('.tower-static').appendChild(towerHighlight);
+                    
+                    // Add label for Launch Tower
+                    const towerLabel = document.createElement('div');
+                    towerLabel.className = 'component-label';
+                    towerLabel.textContent = 'Launch Tower';
+                    towerLabel.style.position = 'absolute';
+                    towerLabel.style.top = '50%';
+                    towerLabel.style.left = '50%';
+                    towerLabel.style.transform = 'translate(-50%, -50%)';
+                    towerLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                    towerLabel.style.color = '#fff';
+                    towerLabel.style.padding = '5px 10px';
+                    towerLabel.style.borderRadius = '4px';
+                    towerLabel.style.fontSize = '14px';
+                    towerLabel.style.fontWeight = 'bold';
+                    towerLabel.style.zIndex = labelZIndex;
+                    towerLabel.style.whiteSpace = 'nowrap';
+                    towerLabel.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
+                    towerLabel.style.border = 'none';
+                    document.querySelector('.tower-static').appendChild(towerLabel);
+                    break;
             }
-            label.style.background = 'rgba(0, 0, 0, 0.8)';
-            label.style.color = '#fff';
-            label.style.padding = '5px 10px';
-            label.style.borderRadius = '4px';
-            label.style.fontSize = '14px';
-            label.style.fontWeight = 'bold';
-            label.style.zIndex = '20';
-            label.style.whiteSpace = 'nowrap';
-            label.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-            label.style.border = 'none';
-            parent.appendChild(label);
-            return label;
         }
         
-        // Helper function to create highlight elements
-        function createHighlight(parent, className, top, left, width, height) {
-            const highlight = document.createElement('div');
-            highlight.className = 'component-highlight ' + className;
-            highlight.style.position = 'absolute';
-            highlight.style.top = top;
-            highlight.style.left = left;
-            highlight.style.width = width;
-            highlight.style.height = height;
-            highlight.style.border = '3px dashed rgba(0, 162, 255, 0.8)';
-            highlight.style.borderRadius = '4px';
-            highlight.style.opacity = '0';
-            highlight.style.transition = 'opacity 0.3s ease';
-            highlight.style.zIndex = '10';
-            parent.appendChild(highlight);
-            return highlight;
-        }
-
         // View switching function
         function switchView(viewName) {
             // Update tabs
@@ -1373,6 +1505,71 @@
             document.getElementById('altitude').textContent = altitude;
             document.getElementById('velocity').textContent = velocity;
             document.getElementById('power').textContent = power;
+        }
+
+        // Handle responsive layout adjustments
+        function handleResponsiveLayout() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            // Adjust mechazilla system position based on screen size
+            const mechazillaSystem = document.querySelector('.mechazilla-system');
+            if (mechazillaSystem) {
+                if (windowWidth < 576) {
+                    mechazillaSystem.style.width = '240px';
+                } else if (windowWidth < 768) {
+                    mechazillaSystem.style.width = '260px';
+                } else if (windowWidth < 992) {
+                    mechazillaSystem.style.width = '280px';
+                } else {
+                    mechazillaSystem.style.width = '300px';
+                }
+            }
+            
+            // Adjust booster size on small screens
+            const booster = document.querySelector('.booster');
+            if (booster) {
+                if (windowWidth < 576) {
+                    booster.style.width = '80px';
+                    booster.style.height = '320px';
+                } else if (windowWidth < 768) {
+                    booster.style.width = '90px';
+                    booster.style.height = '360px';
+                } else {
+                    booster.style.width = '100px';
+                    booster.style.height = '400px';
+                }
+            }
+            
+            // Adjust launch tower size
+            const launchTower = document.querySelector('.launch-tower');
+            if (launchTower) {
+                if (windowWidth < 576) {
+                    launchTower.style.width = '60px';
+                } else if (windowWidth < 768) {
+                    launchTower.style.width = '70px';
+                } else {
+                    launchTower.style.width = '80px';
+                }
+            }
+            
+            // Position telemetry and phase indicators
+            const telemetry = document.querySelector('.telemetry');
+            const phaseIndicator = document.querySelector('.phase-indicator');
+            
+            if (windowWidth < 768) {
+                if (telemetry) telemetry.style.left = '10px';
+                if (phaseIndicator) {
+                    phaseIndicator.style.right = '10px';
+                    phaseIndicator.style.maxWidth = '160px';
+                }
+            } else {
+                if (telemetry) telemetry.style.left = '';
+                if (phaseIndicator) {
+                    phaseIndicator.style.right = '20px';
+                    phaseIndicator.style.maxWidth = '';
+                }
+            }
         }
     </script>
 </body>

@@ -64,46 +64,41 @@ function startRecoverySequence() {
     const armPair = document.querySelector('.arm-pair');
     const engines = document.querySelectorAll('.engine');
     
-    // Step 1: Initial descent with tilt
+    // Step 1: Initial descent
     updateStatus('DESCENT STARTED', '50000', '-100', '0');
     document.querySelector('.phase-step:nth-child(1)').classList.add('active');
     booster.style.bottom = '150%';
-    booster.style.transform = 'translateX(-50%) rotate(15deg)';  // 初始倾斜15度
     armPair.style.width = '300px';
     
     setTimeout(() => {
         if (!isAnimating) return;
-        // Step 2: Grid fins deploy, start correcting tilt
+        // Step 2: Grid fins deploy
         updateStatus('GRID FINS DEPLOYED', '30000', '-80', '10');
         document.querySelector('.phase-step:nth-child(2)').classList.add('active');
         booster.style.bottom = '100%';
-        booster.style.transform = 'translateX(-50%) rotate(10deg)';  // 减小到10度
         engines.forEach(e => e.classList.add('active'));
         
         setTimeout(() => {
             if (!isAnimating) return;
-            // Step 3: Engine ignition, further correction
+            // Step 3: Engine ignition
             updateStatus('LANDING BURN', '15000', '-50', '40');
             document.querySelector('.phase-step:nth-child(3)').classList.add('active');
             booster.style.bottom = '70%';
-            booster.style.transform = 'translateX(-50%) rotate(5deg)';  // 减小到5度
             
             setTimeout(() => {
                 if (!isAnimating) return;
-                // Step 4: Final approach, almost vertical
+                // Step 4: Final approach
                 updateStatus('FINAL APPROACH', '5000', '-20', '30');
                 document.querySelector('.phase-step:nth-child(4)').classList.add('active');
                 booster.style.bottom = '50%';
-                booster.style.transform = 'translateX(-50%) rotate(2deg)';  // 接近垂直
                 armPair.style.width = '240px';
                 
                 setTimeout(() => {
                     if (!isAnimating) return;
-                    // Step 5: Hover for catch, completely vertical
+                    // Step 5: Hover for catch
                     updateStatus('HOVER FOR CATCH', '1000', '-5', '20');
                     document.querySelector('.phase-step:nth-child(5)').classList.add('active');
                     booster.style.bottom = '35%';
-                    booster.style.transform = 'translateX(-50%) rotate(0deg)';  // 完全垂直
                     armPair.style.width = '200px';
                     armPair.classList.add('catching');
                     
@@ -112,6 +107,7 @@ function startRecoverySequence() {
                         // Step 6: Catch complete
                         updateStatus('CATCH SECURED', '700', '0', '0');
                         armPair.style.width = '160px';
+                        booster.style.transform = 'translateX(-50%) rotate(0deg)';
                         engines.forEach(e => e.classList.remove('active'));
                     }, 2000);
                 }, 1500);
