@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX Booster Recovery</title>
+    <style>
+        :root {
+            --spacex-blue: #005288;
+            --spacex-red: #FF0000;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: url('./background image.jpg') center center/cover no-repeat fixed;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 90vh;
+        }
+
+        .main-container {
+            min-height: 90vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .visualization-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .page-header {
+            text-align: left;
+            position: absolute;
+            bottom: 20px;
+            z-index: 5;
+            width: auto;
+            transform: none;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            margin: 0;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 82, 136, 0.5);
+            font-weight: 600;
+        }
+
+        .page-description {
+            font-size: 1rem;
+            color: #fff;
+            margin: 0.5rem 0 0 0;
+            font-family: monospace;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .launch-tower {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 80px;
+            height: 70%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, 
+                rgba(40,40,40,0.9),
+                rgba(60,60,60,0.9),
+                rgba(40,40,40,0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 0;
+        }
+
+        .tower-segment {
+            width: 100%;
+            height: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .mechazilla-system {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 200px;
+            z-index: 1;
+        }
+
+        .booster {
+            position: absolute;
+            left: 50%;
+            bottom: 200%;
+            width: 100px;
+            height: 400px;
+            transform: translateX(-50%);
+            transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+
+        .booster.descending {
+            bottom: 35%;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .booster-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #666, #888);
+            border: 3px solid #999;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .grid-fin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #555;
+            transform-origin: center;
+            transition: transform 1s ease;
+            border: 2px solid #777;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 2px;
+        }
+
+        .grid-fin-detail {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: repeating-linear-gradient(
+                45deg,
+                #444,
+                #444 3px,
+                #555 3px,
+                #555 6px
+            );
+            border-radius: 1px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .engine-section {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            box-sizing: border-box;
+            background: #444;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .engine {
+            width: 10px;
+            height: 10px;
+            background: #666;
+            border: 2px solid #888;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .engine.active {
+            background: #ff4400;
+            border-color: #ff6600;
+            box-shadow: 0 0 10px #ff4400;
+        }
+
+        .engine.active::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            width: 15px;
+            height: 100px;
+            background: linear-gradient(to bottom,
+                #ff4400,
+                #ff6600,
+                rgba(255, 165, 0, 0.5) 70%,
+                transparent);
+            transform: translateX(-50%);
+            filter: blur(4px);
+            animation: flameFlicker 0.1s infinite;
+        }
+
+        @keyframes flameFlicker {
+            0%, 100% {
+                height: 100px;
+                opacity: 1;
+            }
+            50% {
+                height: 110px;
+                opacity: 0.8;
+            }
+        }
+
+        .telemetry {
+            position: absolute;
+            top: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #0f0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .control-panel {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            min-width: 160px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .phase-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+
+        .phase-step {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .phase-step.active {
+            opacity: 1;
+            color: #0f0;
+        }
+
+        .phase-step::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #0f0;
+        }
+
+        .catch-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #666;
+            border-radius: 50%;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .specs-overlay {
+            position: absolute;
+            bottom: 0px;
+            right: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #fff;
+            display: grid;
+            gap: 8px;
+            z-index: 4;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .specs-overlay p {
+            margin: 0;
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 20px;
+            white-space: nowrap;
+            justify-content: end;
+        }
+
+        .specs-overlay span {
+            color: #fff;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .arm-pair {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 200px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .catch-arm {
+            width: 40px;
+            height: 200px;
+            background: #444;
+            position: absolute;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 3;
+        }
+
+        /* Left catch arm */
+        .catch-arm:first-child {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        /* Right catch arm */
+        .catch-arm:last-child {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        /* Catching effect */
+        .arm-pair.catching {
+            width: 160px;
+        }
+
+        .arm-pair.catching .catch-arm {
+            background: #555;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        .arm-pair.catching .catch-arm:first-child {
+            transform: translateX(-20%);
+        }
+
+        .arm-pair.catching .catch-arm:last-child {
+            transform: translateX(20%);
+        }
+
+        /* Catch point styles */
+        .catch-arm::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #555;
+            border-radius: 4px;
+            transform: translateY(-50%);
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+
+        .catch-arm::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 8px;
+            height: 100%;
+            background: #555;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .catch-arm-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #333, #555);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="visualization-container">
+            <div class="scene">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">SpaceX Starship Booster Recovery</h1>
+                    <p class="page-description">Mechazilla Chopsticks Catch Mechanism — 2024</p>
+                </div>
+
+                <!-- Launch Tower -->
+                <div class="launch-tower"></div>
+                
+                <!-- Mechazilla System -->
+                <div class="mechazilla-system">
+                    <div class="arm-pair">
+                        <div class="catch-arm">
+                            <div class="catch-arm-inner"></div>
+                        </div>
+                        <div class="catch-arm">
+                            <div class="catch-arm-inner"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Booster -->
+                <div class="booster">
+                    <div class="booster-body">
+                        <div class="grid-fins-container"></div>
+                        <div class="engine-section">
+                            <!-- 引擎将由 JavaScript 动态创建 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telemetry Display -->
+                <div class="telemetry">
+                    <div>Status: <span id="status">STANDBY</span></div>
+                    <div>Altitude: <span id="altitude">---</span> m</div>
+                    <div>Velocity: <span id="velocity">---</span> m/s</div>
+                    <div>Power: <span id="power">---</span>%</div>
+                </div>
+
+                <!-- Phase Indicator -->
+                <div class="phase-indicator">
+                    <div class="phase-step">DESCENT START</div>
+                    <div class="phase-step">GRID FINS DEPLOY</div>
+                    <div class="phase-step">LANDING BURN</div>
+                    <div class="phase-step">FINAL APPROACH</div>
+                    <div class="phase-step">HOVER FOR CATCH</div>
+                    <div class="phase-step">CATCH SECURED</div>
+                </div>
+
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <button class="control-btn" id="control-btn" onclick="toggleSequence()">Start Recovery</button>
+                </div>
+
+                <!-- Specs Overlay -->
+                <div class="specs-overlay">
+                    <p>Tower Height <span>146m</span></p>
+                    <p>Catch Height <span>70m</span></p>
+                    <p>Arm Span <span>20m</span></p>
+                    <p>Booster <span>Super Heavy</span></p>
+                    <p>Grid Fins <span>4 steel wedge fins</span></p>
+                    <p>Engines <span>33 Raptor 2</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize tower segments
+            const tower = document.querySelector('.launch-tower');
+            for (let i = 0; i < 12; i++) {
+                const segment = document.createElement('div');
+                segment.className = 'tower-segment';
+                tower.appendChild(segment);
+            }
+
+            // Initialize booster components
+            const boosterBody = document.querySelector('.booster-body');
+            
+            // Add grid fins
+            const finPositions = [
+                { top: '20%', left: '-40px', rotation: 0 }, // 左侧上方
+                { top: '20%', right: '-40px', rotation: 0 }  // 右侧上方
+            ];
+
+            finPositions.forEach(pos => {
+                const fin = document.createElement('div');
+                fin.className = 'grid-fin';
+                Object.assign(fin.style, pos);
+                
+                const finDetail = document.createElement('div');
+                finDetail.className = 'grid-fin-detail';
+                fin.appendChild(finDetail);
+                
+                boosterBody.appendChild(fin);
+            });
+
+            // Create engines immediately
+            createEngines();
+        });
+
+        // Global variables
+        let isAnimating = false;
+
+        // Engine management functions
+        function createEngines() {
+            const engineSection = document.querySelector('.engine-section');
+            engineSection.innerHTML = '';
+            
+            // Create engines in a 3x3 grid
+            for (let i = 0; i < 9; i++) {
+                const engine = document.createElement('div');
+                engine.className = 'engine';
+                engineSection.appendChild(engine);
+            }
+        }
+
+        function activateEngines(active) {
+            const engines = document.querySelectorAll('.engine');
+            engines.forEach(engine => {
+                if (active) {
+                    engine.classList.add('active');
+                } else {
+                    engine.classList.remove('active');
+                }
+            });
+        }
+
+        // Animation sequence functions
+        function toggleSequence() {
+            const btn = document.getElementById('control-btn');
+            
+            if (!isAnimating) {
+                // 开始动画
+                isAnimating = true;
+                btn.textContent = 'Recovering...';
+                btn.disabled = true; // 禁用按钮，防止多次点击
+                startRecoverySequence();
+            } else {
+                // 重置动画
+                resetSequence();
+            }
+        }
+
+        function startRecoverySequence() {
+            const booster = document.querySelector('.booster');
+            const armPair = document.querySelector('.arm-pair');
+            
+            // 重置到初始状态
+            resetSequence(false); // 传递 false 表示不重置按钮文本
+            isAnimating = true;
+            
+            // 使火箭可见
+            booster.style.display = 'block';
+            booster.style.opacity = '1';
+            
+            // 步骤 1: 初始下降
+            setTimeout(() => {
+                updateStatus('DESCENT STARTED', '50000', '-100', '0');
+                document.querySelector('.phase-step:nth-child(1)').classList.add('active');
+                booster.style.bottom = '150%';
+                booster.style.transform = 'translateX(-50%) rotate(15deg)';
+                
+                // 步骤 2: 网格鳍展开
+                setTimeout(() => {
+                    if (!isAnimating) return;
+                    updateStatus('GRID FINS DEPLOYED', '30000', '-80', '10');
+                    document.querySelector('.phase-step:nth-child(2)').classList.add('active');
+                    booster.style.bottom = '100%';
+                    booster.style.transform = 'translateX(-50%) rotate(10deg)';
+                    activateEngines(true);
+                    
+                    // 步骤 3: 着陆燃烧
+                    setTimeout(() => {
+                        if (!isAnimating) return;
+                        updateStatus('LANDING BURN', '15000', '-50', '40');
+                        document.querySelector('.phase-step:nth-child(3)').classList.add('active');
+                        booster.style.bottom = '70%';
+                        booster.style.transform = 'translateX(-50%) rotate(5deg)';
+                        
+                        // 步骤 4: 最终接近
+                        setTimeout(() => {
+                            if (!isAnimating) return;
+                            updateStatus('FINAL APPROACH', '5000', '-20', '30');
+                            document.querySelector('.phase-step:nth-child(4)').classList.add('active');
+                            booster.style.bottom = '50%';
+                            booster.style.transform = 'translateX(-50%) rotate(2deg)';
+                            armPair.style.width = '240px';
+                            
+                            // 步骤 5: 悬停等待捕捉
+                            setTimeout(() => {
+                                if (!isAnimating) return;
+                                updateStatus('HOVER FOR CATCH', '1000', '-5', '20');
+                                document.querySelector('.phase-step:nth-child(5)').classList.add('active');
+                                booster.style.bottom = '35%';
+                                booster.style.transform = 'translateX(-50%) rotate(0deg)';
+                                armPair.style.width = '200px';
+                                armPair.classList.add('catching');
+                                
+                                // 步骤 6: 捕捉完成
+                                setTimeout(() => {
+                                    if (!isAnimating) return;
+                                    updateStatus('CATCH SECURED', '0', '0', '0');
+                                    document.querySelector('.phase-step:nth-child(6)').classList.add('active');
+                                    armPair.style.width = '160px';
+                                    setTimeout(() => {
+                                        activateEngines(false);
+                                        // 动画完成，更新按钮状态
+                                        const btn = document.getElementById('control-btn');
+                                        btn.textContent = 'Restart';
+                                        btn.disabled = false;
+                                    }, 500);
+                                }, 1500);
+                            }, 1500);
+                        }, 1500);
+                    }, 1500);
+                }, 1500);
+            }, 100);
+        }
+
+        function resetSequence(resetButton = true) {
+            const booster = document.querySelector('.booster');
+            const armPair = document.querySelector('.arm-pair');
+            
+            // 重置火箭位置
+            booster.style.bottom = '200%';
+            booster.style.transform = 'translateX(-50%) rotate(15deg)';
+            
+            // 重置机械臂
+            armPair.style.width = '300px';
+            armPair.classList.remove('catching');
+            
+            // 关闭引擎
+            activateEngines(false);
+            
+            // 重置状态
+            isAnimating = false;
+            
+            // 重置按钮文本（如果需要）
+            if (resetButton) {
+                const btn = document.getElementById('control-btn');
+                btn.textContent = 'Start Recovery';
+                btn.disabled = false;
+            }
+            
+            // 重置状态显示
+            updateStatus('STANDBY', '---', '---', '---');
+            document.querySelectorAll('.phase-step').forEach(step => {
+                step.classList.remove('active');
+            });
+        }
+
+        function updateStatus(status, altitude, velocity, power) {
+            document.getElementById('status').textContent = status;
+            document.getElementById('altitude').textContent = altitude;
+            document.getElementById('velocity').textContent = velocity;
+            document.getElementById('power').textContent = power;
+        }
+    </script>
+</body>
+</html> 
