@@ -270,33 +270,67 @@
             background: rgba(0,0,0,0.5);
             padding: 15px;
             border-radius: 8px;
-            font-size: 14px;
-            color: #0f0;
-            display: grid;
-            gap: 10px;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .phase-step {
-            margin: 0;
-            padding-left: 20px;
+            display: flex;
+            align-items: flex-start;
             position: relative;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
+            padding-left: 20px;
+            padding: 8px;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+            margin-left: 5px;
         }
 
-        .phase-step.active {
-            opacity: 1;
-            color: #0f0;
-            font-weight: normal;
-        }
-
-        .phase-step::before {
-            content: '>';
+        .phase-step:not(:last-child)::before {
+            content: '';
             position: absolute;
-            left: 0;
-            color: #0f0;
+            left: 5px;
+            top: 18px;
+            bottom: -8px;
+            width: 1px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .phase-marker {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4A4A4A;
+            position: absolute;
+            left: 0px;
+            top: 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .phase-step.active .phase-marker {
+            background: #00FF00;
+            border-color: #00FF00;
+        }
+
+        .phase-info {
+            display: flex;
+            flex-direction: column;
+            padding-left: 5px;
+        }
+
+        .phase-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 2px;
+            color: #fff;
+        }
+
+        .phase-description {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.3;
         }
 
         .catch-point {
@@ -758,6 +792,38 @@
                 max-width: 450px;
                 margin: 0 auto;
             }
+
+            .phase-indicator {
+                max-width: 260px;
+                padding: 12px;
+                gap: 6px;
+                right: 15px;
+            }
+
+            .phase-step {
+                padding: 6px;
+                padding-left: 18px;
+            }
+
+            .phase-marker {
+                width: 8px;
+                height: 8px;
+                left: 1px;
+                top: 11px;
+            }
+
+            .phase-step:not(:last-child)::before {
+                left: 5px;
+                top: 15px;
+            }
+
+            .phase-name {
+                font-size: 13px;
+            }
+
+            .phase-description {
+                font-size: 11px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -803,7 +869,26 @@
             }
             
             .phase-indicator {
+                max-width: 240px;
+                padding: 10px;
                 right: 10px;
+            }
+
+            .phase-step {
+                padding: 5px;
+                padding-left: 16px;
+            }
+
+            .phase-marker {
+                width: 6px;
+                height: 6px;
+                left: 1px;
+                top: 10px;
+            }
+
+            .phase-step:not(:last-child)::before {
+                left: 4px;
+                top: 13px;
             }
         }
         
@@ -1010,12 +1095,48 @@
 
                     <!-- Phase Indicator -->
                     <div class="phase-indicator">
-                        <div class="phase-step">DESCENT START</div>
-                        <div class="phase-step">GRID FINS DEPLOY</div>
-                        <div class="phase-step">LANDING BURN</div>
-                        <div class="phase-step">FINAL APPROACH</div>
-                        <div class="phase-step">HOVER FOR CATCH</div>
-                        <div class="phase-step">CATCH SECURED</div>
+                        <div class="phase-step active">
+                            <div class="phase-marker"></div>
+                            <div class="phase-info">
+                                <div class="phase-name">Descent Start</div>
+                                <div class="phase-description">The booster begins its descent from space.</div>
+                            </div>
+                        </div>
+                        <div class="phase-step">
+                            <div class="phase-marker"></div>
+                            <div class="phase-info">
+                                <div class="phase-name">Grid Fins Deploy</div>
+                                <div class="phase-description">Grid fins are deployed to stabilize the booster.</div>
+                            </div>
+                        </div>
+                        <div class="phase-step">
+                            <div class="phase-marker"></div>
+                            <div class="phase-info">
+                                <div class="phase-name">Landing Burn</div>
+                                <div class="phase-description">Engines ignite to slow down the booster for landing.</div>
+                            </div>
+                        </div>
+                        <div class="phase-step">
+                            <div class="phase-marker"></div>
+                            <div class="phase-info">
+                                <div class="phase-name">Final Approach</div>
+                                <div class="phase-description">The booster aligns itself for a precise landing.</div>
+                            </div>
+                        </div>
+                        <div class="phase-step">
+                            <div class="phase-marker"></div>
+                            <div class="phase-info">
+                                <div class="phase-name">Hover for Catch</div>
+                                <div class="phase-description">The booster hovers above the catch point.</div>
+                            </div>
+                        </div>
+                        <div class="phase-step">
+                            <div class="phase-marker"></div>
+                            <div class="phase-info">
+                                <div class="phase-name">Catch Secured</div>
+                                <div class="phase-description">The booster is secured by the Mechazilla arms.</div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Specs Overlay -->
