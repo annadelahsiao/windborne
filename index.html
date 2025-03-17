@@ -18,12 +18,12 @@
             color: #fff;
             overflow-x: hidden;
             min-height: 100vh;
-            font-size: 16px;
+            font-size: 12px;
         }
 
         .main-container {
             min-height: 100vh;
-            padding: 1rem;
+            padding: 20px;
             position: relative;
         }
 
@@ -32,14 +32,212 @@
             max-width: 1400px;
             width: 100%;
             margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .scene {
             position: relative;
             width: 100%;
-            height: 90vh;
+            height: auto;
             border-radius: 12px;
             overflow: visible;
+            display: grid;
+            grid-template-columns: 2fr;
+            gap: 50px;
+            margin-top: 2%;
+        }
+
+        .right-section {
+            display: grid;
+            grid-template-rows: 1.75fr 1fr;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .booster-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-panel {
+            position: relative;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: monospace;
+            height: fit-content;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+            padding-left: 0;
+            margin-bottom: 12px;
+        }
+
+        .section-header .icon {
+            width: 12px;
+            height: 12px;
+            opacity: 0.7;
+            margin-right: 4px;
+        }
+
+        .section-header .icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-content {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-content:first-child {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .telemetry-data {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .telemetry-data div:not(.section-header) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .telemetry-data div:not(.section-header) span {
+            color: #00FF00;
+            font-family: monospace;
+            margin-right: 4px;
+        }
+
+        .telemetry-data div:not(.section-header) {
+            position: relative;
+        }
+
+        .telemetry-data div:not(.section-header)::after {
+            content: attr(data-unit);
+            margin-left: 4px;
+        }
+
+        .phase-step {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        .phase-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 18px;
+            bottom: -8px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .phase-marker {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4A4A4A;
+            position: absolute;
+            left: 0;
+            top: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .phase-step.active .phase-marker {
+            background: #00FF00;
+            border-color: #00FF00;
+        }
+
+        .phase-info {
+            padding-left: 10px;
+        }
+
+        .phase-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .phase-description {
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .specs-data p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .control-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .control-btn {
+            min-width: 150px;
+            background: linear-gradient(135deg, #005288, #0077cc);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 400;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, #0077cc, #005288);
+            box-shadow: 0 0 15px rgba(0, 119, 204, 0.3);
+        }
+
+        .control-btn:disabled {
+            background: linear-gradient(135deg, #333333, #444444);
+            cursor: not-allowed;
+            opacity: 0.7;
         }
 
         .page-header {
@@ -74,7 +272,7 @@
         .launch-tower {
             position: absolute;
             left: 50%;
-            bottom: 0;
+            bottom: 10%;
             width: 80px;
             height: 70%;
             transform: translateX(-50%);
@@ -86,7 +284,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            z-index: 0;
+            z-index: 1;
         }
 
         .tower-segment {
@@ -115,11 +313,6 @@
             transform: translateX(-50%);
             transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 2;
-        }
-
-        .booster.descending {
-            bottom: 35%;
-            transform: translateX(-50%) rotate(0deg);
         }
 
         .booster-body {
@@ -223,156 +416,52 @@
 
         .telemetry {
             position: absolute;
-            top: 10%;
-            background: rgba(0,0,0,0.5);
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.3);
             padding: 20px;
             border-radius: 8px;
             font-size: 14px;
-            color: #0f0;
+            color: rgba(255,255,255,0.7);
             display: grid;
-            gap: 10px;
-        }
-
-        .control-panel {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
+            gap: 12px;
+            width: 300px;
             z-index: 10;
         }
 
-        .control-btn {
-            min-width: 160px;
-            background: rgba(255, 255, 255, 0.5);
-            color: #000;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .control-btn:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-        }
-
-        .phase-indicator {
-            position: absolute;
-            top: 10%;
-            right: 20px;
-            background: rgba(0,0,0,0.5);
-            padding: 15px;
-            border-radius: 8px;
-            max-width: 300px;
+        .telemetry div {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            font-family: monospace;
         }
 
-        .phase-step {
-            display: flex;
-            align-items: flex-start;
-            position: relative;
-            padding-left: 20px;
-            padding: 8px;
-            padding-left: 20px;
-            transition: all 0.3s ease;
-            margin-left: 5px;
-        }
-
-        .phase-step:not(:last-child)::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 18px;
-            bottom: -8px;
-            width: 1px;
-            background: rgba(255,255,255,0.3);
-        }
-
-        .phase-marker {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #4A4A4A;
-            position: absolute;
-            left: 0px;
-            top: 12px;
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .phase-step.active .phase-marker {
-            background: #00FF00;
-            border-color: #00FF00;
-        }
-
-        .phase-info {
-            display: flex;
-            flex-direction: column;
-            padding-left: 5px;
-        }
-
-        .phase-name {
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 2px;
-            color: #fff;
-        }
-
-        .phase-description {
-            font-size: 12px;
+        .telemetry span {
+            font-family: monospace;
             color: rgba(255,255,255,0.7);
-            line-height: 1.3;
-        }
-
-        .catch-point {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #666;
-            border-radius: 50%;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: none;
         }
 
         .specs-overlay {
-            position: absolute;
-            bottom: 0px;
-            right: 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #fff;
-            display: grid;
-            gap: 8px;
-            z-index: 4;
-            font-weight: 500;
-            text-shadow: none;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
         }
 
         .specs-overlay p {
             margin: 0;
-            display: grid;
-            grid-template-columns: auto auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             gap: 20px;
             white-space: nowrap;
-            justify-content: end;
+            padding: 4px 0;
+            font-family: monospace;
         }
 
         .specs-overlay span {
-            color: #fff;
-            font-weight: 400;
-            text-align: left;
-            text-shadow: none;
+            color: rgba(255,255,255,0.7);
+            font-family: monospace;
         }
 
         .arm-pair {
@@ -469,7 +558,7 @@
             color: rgba(255, 255, 255, 0.7);
             padding: 20px 0;
             margin-top: 30px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.2);
             text-shadow: none;
             line-height: 1.5;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -504,7 +593,7 @@
         .slider-tab {
             padding: 8px 12px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.2);
             color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -541,7 +630,7 @@
         }
 
         .component-list {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
             padding: 0;
             border-radius: 8px;
             max-width: 400px;
@@ -702,18 +791,44 @@
         }
         
         @media (max-width: 992px) {
-            .booster-static {
-                right: 20% !important;
-                transform: translateY(-50%) scale(0.9) !important;
+            .main-container {
+                padding: 20px;
+            }
+
+            .visualization-container {
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+
+            #recovery-view .scene {
+                grid-template-columns: 1fr;
+                width: 100%;
+                margin: 0;
+                padding: 0;
             }
             
-            .tower-static {
-                left: 20% !important;
-                transform: translateY(-50%) scale(0.9) !important;
+            .info-panel {
+                display: none;
             }
-            
-            .component-list {
-                width: 320px !important;
+
+            .booster-container {
+                height: 90vh;
+                width: 100%;
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            .launch-tower {
+                width: 60px;
+            }
+
+            .booster {
+                width: 80px;
+                height: 320px;
+            }
+
+            .mechazilla-system {
+                width: 240px;
             }
         }
         
@@ -730,14 +845,10 @@
                 font-size: 0.8rem;
             }
             
-            .booster-static {
-                right: 25% !important;
-                transform: translateY(-50%) scale(0.8) !important;
-            }
-            
-            .tower-static {
-                left: 25% !important;
-                transform: translateY(-50%) scale(0.8) !important;
+            .booster-container {
+                height: 80vh;
+                width: 100%;
+                margin: 0;
             }
             
             .visualization-container > div:first-child {
@@ -749,13 +860,9 @@
                 margin: 10px 0 !important;
             }
             
-            .specs-overlay {
-                font-size: 12px;
-            }
-            
-            .telemetry, .phase-indicator {
-                font-size: 12px;
-                padding: 10px;
+            .telemetry, .specs-overlay {
+                left: 40%;
+                width: 260px;
             }
             
             .slider-tab {
@@ -824,11 +931,25 @@
             .phase-description {
                 font-size: 11px;
             }
+
+            .booster-container .section-header {
+                top: 10px;
+                left: 10px;
+            }
+
+            .scene {
+                grid-template-columns: 1fr;
+            }
+
+            .right-section {
+                grid-template-rows: auto;
+                gap: 10px;
+            }
         }
         
         @media (max-width: 576px) {
             .main-container {
-                padding: 0.5rem;
+                padding: 20px;
             }
             
             .booster-static {
@@ -841,8 +962,12 @@
                 transform: translateY(-50%) scale(0.7) !important;
             }
             
-            .specs-overlay {
-                display: none;
+            .telemetry, .specs-overlay {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px auto;
+                width: calc(100% - 20px);
             }
             
             .control-btn {
@@ -862,10 +987,6 @@
             .component-icon {
                 width: 30px;
                 height: 30px;
-            }
-            
-            .telemetry {
-                top: 5%;
             }
             
             .phase-indicator {
@@ -890,6 +1011,11 @@
                 left: 4px;
                 top: 13px;
             }
+
+            .booster-container .section-header {
+                top: 5px;
+                left: 5px;
+            }
         }
         
         @media (max-height: 700px) {
@@ -909,6 +1035,138 @@
                 bottom: 20px;
             }
         }
+
+        /* Recovery Process View */
+        #recovery-view .scene {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .booster-container {
+            flex: 1;
+            position: relative;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .info-panel {
+            width: 400px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: monospace;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 1200px) {
+            .info-panel {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #recovery-view .scene {
+                grid-template-columns: 1fr;
+                width: 100%;
+                margin: 0;
+            }
+            
+            .info-panel {
+                display: none;
+            }
+
+            .booster-container {
+                height: 90vh;
+                width: 100%;
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            .launch-tower {
+                width: 60px;
+            }
+
+            .booster {
+                width: 80px;
+                height: 320px;
+            }
+
+            .mechazilla-system {
+                width: 240px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #recovery-view .scene {
+                width: 100%;
+                margin: 0;
+            }
+
+            .booster-container {
+                height: 80vh;
+                width: 100%;
+                margin: 0;
+            }
+
+            .launch-tower {
+                width: 50px;
+            }
+
+            .booster {
+                width: 70px;
+                height: 280px;
+            }
+
+            .mechazilla-system {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-container {
+                padding: 20px;
+            }
+
+            .visualization-container {
+                padding: 0 20px;
+            }
+
+            #recovery-view .scene {
+                width: 100%;
+                margin: 0;
+            }
+
+            .booster-container {
+                height: 70vh;
+                width: 100%;
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            .launch-tower {
+                width: 40px;
+            }
+
+            .booster {
+                width: 60px;
+                height: 240px;
+            }
+
+            .mechazilla-system {
+                width: 180px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -922,7 +1180,7 @@
                 </div>
                 
                 <!-- View Slider - Moved outside of scene -->
-                <div class="view-slider" style="position: static; margin: 15px 20px 0 0;">
+                <div class="view-slider" style="position: static; margin: 15px 0 0 0;">
                     <div class="slider-tabs">
                         <div class="slider-tab active" onclick="switchView('recovery')">Recovery Process</div>
                         <div class="slider-tab" onclick="switchView('components')">Main Components</div>
@@ -1060,98 +1318,124 @@
 
                 <!-- Recovery Process View -->
                 <div id="recovery-view" class="view-container active">
-                    <!-- Launch Tower -->
-                    <div class="launch-tower"></div>
-                    
-                    <!-- Mechazilla System -->
-                    <div class="mechazilla-system">
-                        <div class="arm-pair">
-                            <div class="catch-arm">
-                                <div class="catch-arm-inner"></div>
+                    <div class="scene">
+                        <!-- Left: Booster Container -->
+                        <div class="booster-container">
+                            <div class="launch-tower"></div>
+                            <div class="mechazilla-system">
+                                <div class="arm-pair">
+                                    <div class="catch-arm">
+                                        <div class="catch-arm-inner"></div>
+                                    </div>
+                                    <div class="catch-arm">
+                                        <div class="catch-arm-inner"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="catch-arm">
-                                <div class="catch-arm-inner"></div>
+                            <div class="booster">
+                                <div class="booster-body">
+                                    <div class="grid-fins-container"></div>
+                                    <div class="engine-section"></div>
+                                </div>
+                            </div>
+                            <div class="control-panel">
+                                <button class="control-btn" id="control-btn" onclick="toggleSequence()">START RECOVERY</button>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Booster -->
-                    <div class="booster">
-                        <div class="booster-body">
-                            <div class="grid-fins-container"></div>
-                            <div class="engine-section">
-                                <!-- Engines will be dynamically created by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Telemetry Display -->
-                    <div class="telemetry">
-                        <div>Status: <span id="status">STANDBY</span></div>
-                        <div>Altitude: <span id="altitude">---</span> m</div>
-                        <div>Velocity: <span id="velocity">---</span> m/s</div>
-                        <div>Power: <span id="power">---</span>%</div>
-                    </div>
+                            <!-- Info Panel -->
+                            <div class="info-panel">
+                                <!-- Telemetry Section -->
+                                <div class="section-content telemetry-data">
+                                    <div class="section-header">
+                                        <div class="icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2v20M2 12h20" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                        TELEMETRY DATA
+                                    </div>
+                                    <div>Status: <span id="status">STANDBY</span></div>
+                                    <div>Altitude: <span id="altitude">--- m</span></div>
+                                    <div>Velocity: <span id="velocity">--- m/s</span></div>
+                                    <div>Power: <span id="power">--- %</span></div>
+                                </div>
 
-                    <!-- Phase Indicator -->
-                    <div class="phase-indicator">
-                        <div class="phase-step active">
-                            <div class="phase-marker"></div>
-                            <div class="phase-info">
-                                <div class="phase-name">Descent Start</div>
-                                <div class="phase-description">The booster begins its descent from space.</div>
-                            </div>
-                        </div>
-                        <div class="phase-step">
-                            <div class="phase-marker"></div>
-                            <div class="phase-info">
-                                <div class="phase-name">Grid Fins Deploy</div>
-                                <div class="phase-description">Grid fins are deployed to stabilize the booster.</div>
-                            </div>
-                        </div>
-                        <div class="phase-step">
-                            <div class="phase-marker"></div>
-                            <div class="phase-info">
-                                <div class="phase-name">Landing Burn</div>
-                                <div class="phase-description">Engines ignite to slow down the booster for landing.</div>
-                            </div>
-                        </div>
-                        <div class="phase-step">
-                            <div class="phase-marker"></div>
-                            <div class="phase-info">
-                                <div class="phase-name">Final Approach</div>
-                                <div class="phase-description">The booster aligns itself for a precise landing.</div>
-                            </div>
-                        </div>
-                        <div class="phase-step">
-                            <div class="phase-marker"></div>
-                            <div class="phase-info">
-                                <div class="phase-name">Hover for Catch</div>
-                                <div class="phase-description">The booster hovers above the catch point.</div>
-                            </div>
-                        </div>
-                        <div class="phase-step">
-                            <div class="phase-marker"></div>
-                            <div class="phase-info">
-                                <div class="phase-name">Catch Secured</div>
-                                <div class="phase-description">The booster is secured by the Mechazilla arms.</div>
-                            </div>
-                        </div>
-                    </div>
+                                <!-- Recovery Phases Section -->
+                                <div class="section-content">
+                                    <div class="section-header">
+                                        <div class="icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2v20M2 12h20" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                        RECOVERY PHASES
+                                    </div>
+                                    <div class="phase-steps">
+                                        <div class="phase-step active">
+                                            <div class="phase-marker"></div>
+                                            <div class="phase-info">
+                                                <div class="phase-name">Descent Start</div>
+                                                <div class="phase-description">The booster begins its descent from space.</div>
+                                            </div>
+                                        </div>
+                                        <div class="phase-step">
+                                            <div class="phase-marker"></div>
+                                            <div class="phase-info">
+                                                <div class="phase-name">Grid Fins Deploy</div>
+                                                <div class="phase-description">Grid fins are deployed to stabilize the booster.</div>
+                                            </div>
+                                        </div>
+                                        <div class="phase-step">
+                                            <div class="phase-marker"></div>
+                                            <div class="phase-info">
+                                                <div class="phase-name">Landing Burn</div>
+                                                <div class="phase-description">Engines ignite to slow down the booster for landing.</div>
+                                            </div>
+                                        </div>
+                                        <div class="phase-step">
+                                            <div class="phase-marker"></div>
+                                            <div class="phase-info">
+                                                <div class="phase-name">Final Approach</div>
+                                                <div class="phase-description">The booster aligns itself for a precise landing.</div>
+                                            </div>
+                                        </div>
+                                        <div class="phase-step">
+                                            <div class="phase-marker"></div>
+                                            <div class="phase-info">
+                                                <div class="phase-name">Hover for Catch</div>
+                                                <div class="phase-description">The booster hovers above the catch point.</div>
+                                            </div>
+                                        </div>
+                                        <div class="phase-step">
+                                            <div class="phase-marker"></div>
+                                            <div class="phase-info">
+                                                <div class="phase-name">Catch Secured</div>
+                                                <div class="phase-description">The booster is secured by the Mechazilla arms.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <!-- Specs Overlay -->
-                    <div class="specs-overlay">
-                        <p>Tower Height <span>146m</span></p>
-                        <p>Catch Height <span>70m</span></p>
-                        <p>Arm Span <span>20m</span></p>
-                        <p>Booster <span>Super Heavy</span></p>
-                        <p>Grid Fins <span>4 steel wedge fins</span></p>
-                        <p>Engines <span>33 Raptor 2</span></p>
-                    </div>
-                    
-                    <!-- Control Panel -->
-                    <div class="control-panel">
-                        <button class="control-btn" id="control-btn" onclick="toggleSequence()">Start Recovery</button>
+                                <!-- Specifications Section -->
+                                <div class="section-content specs-data">
+                                    <div class="section-header">
+                                        <div class="icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2v20M2 12h20" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                        SPECIFICATIONS
+                                    </div>
+                                    <p>Tower Height <span>146m</span></p>
+                                    <p>Catch Height <span>70m</span></p>
+                                    <p>Arm Span <span>20m</span></p>
+                                    <p>Booster <span>Super Heavy</span></p>
+                                    <p>Grid Fins <span>4 steel wedge fins</span></p>
+                                    <p>Engines <span>33 Raptor 2</span></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1194,7 +1478,7 @@
                 boosterBody.appendChild(fin);
             });
 
-            // Create engines immediately for recovery view
+            // Create engines immediately for recovery
             createEngines();
             
             // Initialize the view based on URL parameter or default to recovery
@@ -1281,7 +1565,6 @@
                     boosterLabel.style.left = '50%';
                     boosterLabel.style.transform = 'translate(-50%, -50%)';
                     boosterLabel.style.background = 'rgba(0, 0, 0, 0.8)';
-                    boosterLabel.style.color = '#fff';
                     boosterLabel.style.padding = '5px 10px';
                     boosterLabel.style.borderRadius = '4px';
                     boosterLabel.style.fontSize = isMobile ? '12px' : '14px';
@@ -1641,9 +1924,9 @@
 
         function updateStatus(status, altitude, velocity, power) {
             document.getElementById('status').textContent = status;
-            document.getElementById('altitude').textContent = altitude;
-            document.getElementById('velocity').textContent = velocity;
-            document.getElementById('power').textContent = power;
+            document.getElementById('altitude').textContent = altitude + ' m';
+            document.getElementById('velocity').textContent = velocity + ' m/s';
+            document.getElementById('power').textContent = power + ' %';
         }
 
         // Handle responsive layout adjustments
@@ -1689,24 +1972,6 @@
                     launchTower.style.width = '70px';
                 } else {
                     launchTower.style.width = '80px';
-                }
-            }
-            
-            // Position telemetry and phase indicators
-            const telemetry = document.querySelector('.telemetry');
-            const phaseIndicator = document.querySelector('.phase-indicator');
-            
-            if (windowWidth < 768) {
-                if (telemetry) telemetry.style.left = '10px';
-                if (phaseIndicator) {
-                    phaseIndicator.style.right = '10px';
-                    phaseIndicator.style.maxWidth = '160px';
-                }
-            } else {
-                if (telemetry) telemetry.style.left = '';
-                if (phaseIndicator) {
-                    phaseIndicator.style.right = '20px';
-                    phaseIndicator.style.maxWidth = '';
                 }
             }
         }
