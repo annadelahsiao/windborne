@@ -633,6 +633,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .component-list {
@@ -711,6 +713,7 @@
         }
 
         .booster-diagram {
+            display: none;
             position: absolute;
             width: 100%;
             height: 100%;
@@ -722,7 +725,11 @@
             z-index: 1;
             overflow: visible;
         }
-        
+
+        .components-view .booster-diagram {
+            display: block;
+        }
+
         .tower-static, .booster-static {
             pointer-events: auto;
         }
@@ -797,12 +804,51 @@
         }
         
         @media (max-width: 992px) {
+            /* Center title and description */
+            .page-header {
+                text-align: center;
+                width: 100%;
+                margin: 0;
+            }
+
+            /* Center tab navigation */
+            .visualization-container > div:first-child {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .view-slider {
+                margin: 0;
+                position: static;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .slider-tabs {
+                width: auto;
+                margin: 0 auto;
+            }
+
+            .slider-tab {
+                padding: 8px 20px;
+            }
+
             .main-container {
                 padding: 10px;
             }
 
             .visualization-container {
                 padding: 0 10px;
+            }
+
+            /* Add margin to components view */
+            .components-view {
+                margin-top: 20px;
+                height: auto;
+                padding: 20px;
             }
 
             #recovery-view .scene {
@@ -833,15 +879,36 @@
             }
 
             .mechazilla-system {
-                width: 240px;
-            }
-
-            .page-header {
-                margin: 0;
+                width: 200px;
             }
 
             .view-slider {
                 margin: 10px 0;
+            }
+
+            .arm-pair {
+                width: 200px;
+            }
+
+            .arm-pair.catching {
+                width: 120px;
+            }
+
+            .component-list {
+                width: 100% !important;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            /* Only hide static elements in components view */
+            #components-view .booster-static,
+            #components-view .tower-static {
+                display: none !important;
+            }
+
+            .components-view {
+                height: auto;
+                padding: 20px;
             }
         }
         
@@ -852,6 +919,16 @@
 
             .visualization-container {
                 padding: 0 10px;
+            }
+
+            /* Increase top margin for smaller screens */
+            .components-view {
+                margin-top: 30px;
+            }
+
+            /* Adjust spacing between title and tabs */
+            .visualization-container > div:first-child {
+                gap: 12px;
             }
 
             .booster-container {
@@ -885,6 +962,35 @@
             .specs-data p {
                 font-size: 11px;
             }
+
+            .mechazilla-system {
+                width: 180px;
+            }
+
+            .arm-pair {
+                width: 180px;
+            }
+
+            .arm-pair.catching {
+                width: 100px;
+            }
+
+            .component-list {
+                width: 100% !important;
+                max-width: 400px;
+            }
+
+            .component-item {
+                padding: 12px;
+            }
+
+            .component-name {
+                font-size: 14px;
+            }
+
+            .component-desc {
+                font-size: 12px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -894,6 +1000,16 @@
 
             .visualization-container {
                 padding: 0 5px;
+            }
+
+            /* Further adjust margins for mobile */
+            .components-view {
+                margin-top: 10px;
+            }
+
+            /* Tighten spacing between title and tabs */
+            .visualization-container > div:first-child {
+                gap: 10px;
             }
 
             .page-title {
@@ -940,6 +1056,41 @@
                 min-width: 100px;
                 padding: 8px 12px;
                 font-size: 12px;
+            }
+
+            .mechazilla-system {
+                width: 160px;
+            }
+
+            .arm-pair {
+                width: 160px;
+            }
+
+            .arm-pair.catching {
+                width: 80px;
+            }
+
+            .component-list {
+                width: 100% !important;
+                max-width: 350px;
+            }
+
+            .component-item {
+                padding: 10px;
+            }
+
+            .component-icon {
+                width: 32px;
+                height: 32px;
+                margin-right: 10px;
+            }
+
+            .component-name {
+                font-size: 13px;
+            }
+
+            .component-desc {
+                font-size: 11px;
             }
         }
         
@@ -1021,7 +1172,34 @@
             }
 
             .mechazilla-system {
-                width: 240px;
+                width: 200px;
+            }
+
+            .arm-pair {
+                width: 200px;
+            }
+
+            .arm-pair.catching {
+                width: 120px;
+            }
+
+            .component-list {
+                width: 100% !important;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .booster-static {
+                display: none;
+            }
+
+            .tower-static {
+                display: none;
+            }
+
+            .components-view {
+                height: auto;
+                padding: 20px;
             }
         }
 
@@ -1047,7 +1225,32 @@
             }
 
             .mechazilla-system {
-                width: 200px;
+                width: 180px;
+            }
+
+            .arm-pair {
+                width: 180px;
+            }
+
+            .arm-pair.catching {
+                width: 100px;
+            }
+
+            .component-list {
+                width: 100% !important;
+                max-width: 400px;
+            }
+
+            .component-item {
+                padding: 12px;
+            }
+
+            .component-name {
+                font-size: 14px;
+            }
+
+            .component-desc {
+                font-size: 12px;
             }
         }
 
@@ -1082,7 +1285,38 @@
             }
 
             .mechazilla-system {
-                width: 180px;
+                width: 160px;
+            }
+
+            .arm-pair {
+                width: 160px;
+            }
+
+            .arm-pair.catching {
+                width: 80px;
+            }
+
+            .component-list {
+                width: 100% !important;
+                max-width: 350px;
+            }
+
+            .component-item {
+                padding: 10px;
+            }
+
+            .component-icon {
+                width: 32px;
+                height: 32px;
+                margin-right: 10px;
+            }
+
+            .component-name {
+                font-size: 13px;
+            }
+
+            .component-desc {
+                font-size: 11px;
             }
         }
     </style>
@@ -1679,7 +1913,15 @@
                 view.classList.remove('active');
             });
             
-            document.getElementById(viewName + '-view').classList.add('active');
+            // Show the selected view
+            const selectedView = document.getElementById(viewName + '-view');
+            selectedView.classList.add('active');
+
+            // Handle booster diagram visibility
+            const boosterDiagram = document.querySelector('.booster-diagram');
+            if (boosterDiagram) {
+                boosterDiagram.style.display = viewName === 'components' ? 'block' : 'none';
+            }
             
             // Update URL parameter
             const url = new URL(window.location);
