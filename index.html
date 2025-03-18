@@ -627,14 +627,15 @@
 
         /* Components View Styles */
         .components-view {
-            height: 90vh;
+            min-height: calc(100vh - 200px);
             width: 100%;
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
             box-sizing: border-box;
+            overflow-y: auto;
         }
 
         .component-list {
@@ -646,8 +647,7 @@
             position: relative;
             z-index: 100;
             width: 360px;
-            overflow-y: auto;
-            max-height: 80vh;
+            max-height: none;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             margin: 0 auto;
         }
@@ -1109,7 +1109,7 @@
         #recovery-view .scene {
             display: grid;
             grid-template-columns: 1fr auto;
-            justify-content: space-between;
+            gap: 20px;
             margin: 0;
         }
 
@@ -1123,6 +1123,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
+            min-height: 90vh;
         }
 
         .info-panel {
@@ -1136,6 +1137,8 @@
             color: rgba(255, 255, 255, 0.7);
             font-family: monospace;
             overflow-y: auto;
+            height: fit-content;
+            align-self: start;
         }
 
         @media (max-width: 1200px) {
@@ -1147,6 +1150,7 @@
         @media (max-width: 992px) {
             #recovery-view .scene {
                 grid-template-columns: 1fr;
+                gap: 20px;
                 width: 100%;
                 margin: 0;
             }
@@ -1160,163 +1164,6 @@
                 width: 100%;
                 margin: 0;
                 border-radius: 8px;
-            }
-
-            .launch-tower {
-                width: 60px;
-            }
-
-            .booster {
-                width: 80px;
-                height: 320px;
-            }
-
-            .mechazilla-system {
-                width: 200px;
-            }
-
-            .arm-pair {
-                width: 200px;
-            }
-
-            .arm-pair.catching {
-                width: 120px;
-            }
-
-            .component-list {
-                width: 100% !important;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-
-            .booster-static {
-                display: none;
-            }
-
-            .tower-static {
-                display: none;
-            }
-
-            .components-view {
-                height: auto;
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #recovery-view .scene {
-                width: 100%;
-                margin: 0;
-            }
-
-            .booster-container {
-                height: 80vh;
-                width: 100%;
-                margin: 0;
-            }
-
-            .launch-tower {
-                width: 50px;
-            }
-
-            .booster {
-                width: 70px;
-                height: 280px;
-            }
-
-            .mechazilla-system {
-                width: 180px;
-            }
-
-            .arm-pair {
-                width: 180px;
-            }
-
-            .arm-pair.catching {
-                width: 100px;
-            }
-
-            .component-list {
-                width: 100% !important;
-                max-width: 400px;
-            }
-
-            .component-item {
-                padding: 12px;
-            }
-
-            .component-name {
-                font-size: 14px;
-            }
-
-            .component-desc {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .main-container {
-                padding: 20px;
-            }
-
-            .visualization-container {
-                padding: 0 20px;
-            }
-
-            #recovery-view .scene {
-                width: 100%;
-                margin: 0;
-            }
-
-            .booster-container {
-                height: 70vh;
-                width: 100%;
-                margin: 0;
-                border-radius: 8px;
-            }
-
-            .launch-tower {
-                width: 40px;
-            }
-
-            .booster {
-                width: 60px;
-                height: 240px;
-            }
-
-            .mechazilla-system {
-                width: 160px;
-            }
-
-            .arm-pair {
-                width: 160px;
-            }
-
-            .arm-pair.catching {
-                width: 80px;
-            }
-
-            .component-list {
-                width: 100% !important;
-                max-width: 350px;
-            }
-
-            .component-item {
-                padding: 10px;
-            }
-
-            .component-icon {
-                width: 32px;
-                height: 32px;
-                margin-right: 10px;
-            }
-
-            .component-name {
-                font-size: 13px;
-            }
-
-            .component-desc {
-                font-size: 11px;
             }
         }
     </style>
@@ -2023,30 +1870,31 @@
                 // Update booster animation based on phase
                 switch(currentPhase) {
                     case 0: // Initial descent
-                        booster.style.bottom = '150%';
+                        booster.style.bottom = '120vh';
                         booster.style.transform = 'translateX(-50%) rotate(15deg)';
                         break;
                     case 1: // Grid fins deploy
-                        booster.style.bottom = '100%';
+                        booster.style.bottom = '90vh';
                         booster.style.transform = 'translateX(-50%) rotate(10deg)';
                         activateEngines(true);
                         break;
                     case 2: // Landing burn
-                        booster.style.bottom = '70%';
+                        booster.style.bottom = '60vh';
                         booster.style.transform = 'translateX(-50%) rotate(5deg)';
                         break;
                     case 3: // Final approach
-                        booster.style.bottom = '50%';
+                        booster.style.bottom = '45vh';
                         booster.style.transform = 'translateX(-50%) rotate(2deg)';
                         armPair.style.width = '240px';
                         break;
                     case 4: // Hover for catch
-                        booster.style.bottom = '35%';
+                        booster.style.bottom = '35vh';
                         booster.style.transform = 'translateX(-50%) rotate(0deg)';
                         armPair.style.width = '200px';
                         armPair.classList.add('catching');
                         break;
                     case 5: // Catch secured
+                        booster.style.bottom = '35vh';
                         armPair.style.width = '160px';
                         setTimeout(() => {
                             activateEngines(false);
@@ -2072,8 +1920,8 @@
             const booster = document.querySelector('.booster');
             const armPair = document.querySelector('.arm-pair');
             
-            // Reset rocket position
-            booster.style.bottom = '200%';
+            // Reset rocket position using vh units
+            booster.style.bottom = '150vh';
             booster.style.transform = 'translateX(-50%) rotate(15deg)';
             
             // Reset mechanical arm
