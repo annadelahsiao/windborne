@@ -25,6 +25,8 @@
             min-height: 100vh;
             padding: 20px;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .visualization-container {
@@ -34,6 +36,9 @@
             margin: 0 auto;
             padding: 0 20px;
             box-sizing: border-box;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .scene {
@@ -45,7 +50,8 @@
             display: grid;
             grid-template-columns: 2fr;
             gap: 50px;
-            margin-top: 2%;
+            margin-top: 25px;
+            flex: 1;
         }
 
         .right-section {
@@ -643,7 +649,6 @@
 
         /* Components View Styles */
         .components-view {
-            min-height: calc(100vh - 200px);
             width: 100%;
             position: relative;
             display: flex;
@@ -651,7 +656,7 @@
             align-items: flex-start;
             padding: 20px;
             box-sizing: border-box;
-            overflow-y: auto;
+            margin-top: 5%;
         }
 
         .component-list {
@@ -663,7 +668,6 @@
             position: relative;
             z-index: 100;
             width: 360px;
-            max-height: none;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             margin: 0 auto;
         }
@@ -862,8 +866,7 @@
 
             /* Add margin to components view */
             .components-view {
-                margin-top: 20px;
-                height: auto;
+                margin-top: 5%;
                 padding: 20px;
             }
 
@@ -939,7 +942,7 @@
 
             /* Increase top margin for smaller screens */
             .components-view {
-                margin-top: 30px;
+                margin-top: 5%;
             }
 
             /* Adjust spacing between title and tabs */
@@ -1020,7 +1023,8 @@
 
             /* Further adjust margins for mobile */
             .components-view {
-                margin-top: 10px;
+                margin-top: 5%;
+                padding: 10px;
             }
 
             /* Tighten spacing between title and tabs */
@@ -1360,11 +1364,12 @@
                 <!-- Components View -->
                 <div id="components-view" class="view-container">
                     <div class="components-view">
-                        <div class="component-list" style="max-height: 80vh; overflow-y: auto; width: 380px; z-index: 100;">
-                            <!-- 添加悬停提示 -->
+                        <div class="component-list">
+                            <!-- Add hover hint -->
                             <div style="padding: 10px; text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 30, 30, 0.5); position: sticky; top: 0; z-index: 10;">
                                 Hover to interact
                             </div>
+                            <!-- Component items -->
                             <div class="component-item" data-component="mechazilla">
                                 <div class="component-icon">
                                     <div style="width: 20px; height: 5px; background: #444;"></div>
