@@ -798,30 +798,29 @@
         
         @media (max-width: 992px) {
             .main-container {
-                padding: 20px;
+                padding: 10px;
             }
 
             .visualization-container {
-                padding: 0 20px;
-                box-sizing: border-box;
+                padding: 0 10px;
             }
 
             #recovery-view .scene {
                 grid-template-columns: 1fr;
-                width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .info-panel {
-                display: none;
+                gap: 20px;
             }
 
             .booster-container {
-                height: 90vh;
+                height: 80vh;
                 width: 100%;
                 margin: 0;
                 border-radius: 8px;
+            }
+
+            .info-panel {
+                width: 100%;
+                max-width: none;
+                margin-top: 20px;
             }
 
             .launch-tower {
@@ -836,209 +835,122 @@
             .mechazilla-system {
                 width: 240px;
             }
+
+            .page-header {
+                margin: 0;
+            }
+
+            .view-slider {
+                margin: 10px 0;
+            }
         }
         
         @media (max-width: 768px) {
-            body {
-                font-size: 14px;
-            }
-            
-            .page-title {
-                font-size: 1.2rem;
-            }
-            
-            .page-description {
-                font-size: 0.8rem;
-            }
-            
-            .booster-container {
-                height: 80vh;
-                width: 100%;
-                margin: 0;
-            }
-            
-            .visualization-container > div:first-child {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .view-slider {
-                margin: 10px 0 !important;
-            }
-            
-            .telemetry, .specs-overlay {
-                left: 40%;
-                width: 260px;
-            }
-            
-            .slider-tab {
-                font-size: 0.8rem;
-            }
-            
-            .component-list {
-                width: 280px !important;
-                max-height: 70vh;
-            }
-            
-            .component-name {
-                font-size: 1rem;
-            }
-            
-            .component-desc {
-                font-size: 0.8rem;
-            }
-            
-            /* Component view on mobile shows only the list */
-            .components-view {
-                justify-content: center;
+            .main-container {
                 padding: 10px;
             }
-            
-            /* Hide tower and booster diagrams on mobile */
-            .tower-static, .booster-static {
-                display: none !important;
-            }
-            
-            /* Make component list wider on mobile to use available space */
-            .component-list {
-                width: 100% !important;
-                max-width: 450px;
-                margin: 0 auto;
+
+            .visualization-container {
+                padding: 0 10px;
             }
 
-            .phase-indicator {
-                max-width: 260px;
-                padding: 12px;
-                gap: 6px;
-                right: 15px;
+            .booster-container {
+                height: 70vh;
+            }
+
+            .info-panel {
+                padding: 15px;
+            }
+
+            .section-header {
+                font-size: 11px;
+            }
+
+            .telemetry-data div:not(.section-header) {
+                font-size: 11px;
             }
 
             .phase-step {
-                padding: 6px;
-                padding-left: 18px;
-            }
-
-            .phase-marker {
-                width: 8px;
-                height: 8px;
-                left: 1px;
-                top: 11px;
-            }
-
-            .phase-step:not(:last-child)::before {
-                left: 5px;
-                top: 15px;
+                margin: 6px 0;
             }
 
             .phase-name {
-                font-size: 13px;
+                font-size: 12px;
             }
 
             .phase-description {
                 font-size: 11px;
             }
 
-            .booster-container .section-header {
-                top: 10px;
-                left: 10px;
-            }
-
-            .scene {
-                grid-template-columns: 1fr;
-            }
-
-            .right-section {
-                grid-template-rows: auto;
-                gap: 10px;
+            .specs-data p {
+                font-size: 11px;
             }
         }
         
         @media (max-width: 576px) {
             .main-container {
-                padding: 20px;
+                padding: 5px;
             }
-            
-            .booster-static {
-                right: 30% !important;
-                transform: translateY(-50%) scale(0.7) !important;
+
+            .visualization-container {
+                padding: 0 5px;
             }
-            
-            .tower-static {
-                left: 30% !important;
-                transform: translateY(-50%) scale(0.7) !important;
+
+            .page-title {
+                font-size: 1.2rem;
             }
-            
-            .telemetry, .specs-overlay {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin: 10px auto;
-                width: calc(100% - 20px);
-            }
-            
-            .control-btn {
-                min-width: 120px;
-                padding: 0.8rem 1.5rem;
-            }
-            
-            .slider-tab {
+
+            .page-description {
                 font-size: 0.8rem;
-                padding: 6px 10px;
             }
-            
-            .component-list {
-                width: 250px !important;
+
+            .booster-container {
+                height: 60vh;
             }
-            
-            .component-icon {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .phase-indicator {
-                max-width: 240px;
+
+            .info-panel {
                 padding: 10px;
-                right: 10px;
+            }
+
+            .section-header {
+                font-size: 10px;
+            }
+
+            .telemetry-data div:not(.section-header) {
+                font-size: 10px;
             }
 
             .phase-step {
-                padding: 5px;
-                padding-left: 16px;
+                margin: 4px 0;
             }
 
-            .phase-marker {
-                width: 6px;
-                height: 6px;
-                left: 1px;
-                top: 10px;
+            .phase-name {
+                font-size: 11px;
             }
 
-            .phase-step:not(:last-child)::before {
-                left: 4px;
-                top: 13px;
+            .phase-description {
+                font-size: 10px;
             }
 
-            .booster-container .section-header {
-                top: 5px;
-                left: 5px;
+            .specs-data p {
+                font-size: 10px;
+            }
+
+            .control-btn {
+                min-width: 100px;
+                padding: 8px 12px;
+                font-size: 12px;
             }
         }
         
         @media (max-height: 700px) {
-            .scene {
-                height: 85vh;
+            .booster-container {
+                height: 80vh;
             }
-            
-            .components-view {
-                height: 85vh;
-            }
-            
-            .launch-tower {
-                height: 60%;
-            }
-            
-            .control-panel {
-                bottom: 20px;
+
+            .info-panel {
+                max-height: 80vh;
+                overflow-y: auto;
             }
         }
 
@@ -1777,6 +1689,179 @@
         
         // Global variables
         let isAnimating = false;
+        let currentAnimation = null;
+
+        // Counter animation function
+        function animateCounter(element, start, end, duration, unit = '') {
+            const range = end - start;
+            const increment = range / (duration / 16); // 60fps
+            let current = start;
+            
+            return new Promise(resolve => {
+                const animation = setInterval(() => {
+                    current += increment;
+                    if ((increment >= 0 && current >= end) || (increment < 0 && current <= end)) {
+                        clearInterval(animation);
+                        element.textContent = Math.round(end) + unit;
+                        resolve();
+                    } else {
+                        element.textContent = Math.round(current) + unit;
+                    }
+                }, 16);
+            });
+        }
+
+        // Update telemetry with animation
+        async function updateTelemetryWithAnimation(prevStatus, newStatus) {
+            const altitudeElement = document.getElementById('altitude');
+            const velocityElement = document.getElementById('velocity');
+            const powerElement = document.getElementById('power');
+            
+            // Parse previous values
+            const prevAltitude = parseInt(altitudeElement.textContent) || 0;
+            const prevVelocity = parseInt(velocityElement.textContent) || 0;
+            const prevPower = parseInt(powerElement.textContent) || 0;
+            
+            // Parse new values
+            const newAltitude = parseInt(newStatus.altitude) || 0;
+            const newVelocity = parseInt(newStatus.velocity) || 0;
+            const newPower = parseInt(newStatus.power) || 0;
+            
+            // Animate all values simultaneously
+            await Promise.all([
+                animateCounter(altitudeElement, prevAltitude, newAltitude, 1000, ' m'),
+                animateCounter(velocityElement, prevVelocity, newVelocity, 1000, ' m/s'),
+                animateCounter(powerElement, prevPower, newPower, 1000, ' %')
+            ]);
+            
+            // Update status text
+            document.getElementById('status').textContent = newStatus.status;
+        }
+
+        // Define telemetry data for each phase
+        const phaseData = [
+            { status: 'DESCENT STARTED', altitude: 50000, velocity: -100, power: 0 },
+            { status: 'GRID FINS DEPLOYED', altitude: 30000, velocity: -80, power: 10 },
+            { status: 'LANDING BURN', altitude: 15000, velocity: -50, power: 40 },
+            { status: 'FINAL APPROACH', altitude: 5000, velocity: -20, power: 30 },
+            { status: 'HOVER FOR CATCH', altitude: 1000, velocity: -5, power: 20 },
+            { status: 'CATCH SECURED', altitude: 0, velocity: 0, power: 0 }
+        ];
+
+        // Update the startRecoverySequence function
+        function startRecoverySequence() {
+            const booster = document.querySelector('.booster');
+            const armPair = document.querySelector('.arm-pair');
+            
+            // Reset to initial state
+            resetSequence(false);
+            isAnimating = true;
+            
+            // Make rocket visible
+            booster.style.display = 'block';
+            booster.style.opacity = '1';
+            
+            // Initial values
+            let currentPhase = -1;
+            const initialData = { status: 'STANDBY', altitude: 50000, velocity: 0, power: 0 };
+            
+            function nextPhase() {
+                currentPhase++;
+                if (currentPhase >= phaseData.length || !isAnimating) return;
+                
+                const prevData = currentPhase === 0 ? initialData : phaseData[currentPhase - 1];
+                const currentData = phaseData[currentPhase];
+                
+                // Update phase indicator
+                document.querySelector(`.phase-step:nth-child(${currentPhase + 1})`).classList.add('active');
+                
+                // Animate telemetry
+                updateTelemetryWithAnimation(prevData, currentData);
+                
+                // Update booster animation based on phase
+                switch(currentPhase) {
+                    case 0: // Initial descent
+                        booster.style.bottom = '150%';
+                        booster.style.transform = 'translateX(-50%) rotate(15deg)';
+                        break;
+                    case 1: // Grid fins deploy
+                        booster.style.bottom = '100%';
+                        booster.style.transform = 'translateX(-50%) rotate(10deg)';
+                        activateEngines(true);
+                        break;
+                    case 2: // Landing burn
+                        booster.style.bottom = '70%';
+                        booster.style.transform = 'translateX(-50%) rotate(5deg)';
+                        break;
+                    case 3: // Final approach
+                        booster.style.bottom = '50%';
+                        booster.style.transform = 'translateX(-50%) rotate(2deg)';
+                        armPair.style.width = '240px';
+                        break;
+                    case 4: // Hover for catch
+                        booster.style.bottom = '35%';
+                        booster.style.transform = 'translateX(-50%) rotate(0deg)';
+                        armPair.style.width = '200px';
+                        armPair.classList.add('catching');
+                        break;
+                    case 5: // Catch secured
+                        armPair.style.width = '160px';
+                        setTimeout(() => {
+                            activateEngines(false);
+                            const btn = document.getElementById('control-btn');
+                            btn.textContent = 'Restart';
+                            btn.disabled = false;
+                        }, 500);
+                        break;
+                }
+                
+                // Schedule next phase
+                if (currentPhase < phaseData.length - 1) {
+                    setTimeout(nextPhase, 1500);
+                }
+            }
+            
+            // Start the sequence
+            setTimeout(nextPhase, 100);
+        }
+
+        // Update the resetSequence function
+        function resetSequence(resetButton = true) {
+            const booster = document.querySelector('.booster');
+            const armPair = document.querySelector('.arm-pair');
+            
+            // Reset rocket position
+            booster.style.bottom = '200%';
+            booster.style.transform = 'translateX(-50%) rotate(15deg)';
+            
+            // Reset mechanical arm
+            armPair.style.width = '300px';
+            armPair.classList.remove('catching');
+            
+            // Turn off engines
+            activateEngines(false);
+            
+            // Reset state
+            isAnimating = false;
+            
+            // Reset button text (if needed)
+            if (resetButton) {
+                const btn = document.getElementById('control-btn');
+                btn.textContent = 'Start Recovery';
+                btn.disabled = false;
+            }
+            
+            // Reset telemetry with animation
+            updateTelemetryWithAnimation(
+                { status: '', altitude: 0, velocity: 0, power: 0 },
+                { status: 'STANDBY', altitude: 0, velocity: 0, power: 0 }
+            );
+            
+            // Reset phase indicators
+            document.querySelectorAll('.phase-step').forEach(step => {
+                step.classList.remove('active');
+            });
+        }
 
         // Engine management functions
         function createEngines() {
@@ -1818,121 +1903,6 @@
                 // Reset animation
                 resetSequence();
             }
-        }
-
-        function startRecoverySequence() {
-            const booster = document.querySelector('.booster');
-            const armPair = document.querySelector('.arm-pair');
-            
-            // Reset to initial state
-            resetSequence(false); // Pass false to not reset button text
-            isAnimating = true;
-            
-            // Make rocket visible
-            booster.style.display = 'block';
-            booster.style.opacity = '1';
-            
-            // Step 1: Initial descent
-            setTimeout(() => {
-                updateStatus('DESCENT STARTED', '50000', '-100', '0');
-                document.querySelector('.phase-step:nth-child(1)').classList.add('active');
-                booster.style.bottom = '150%';
-                booster.style.transform = 'translateX(-50%) rotate(15deg)';
-                
-                // Step 2: Grid fins deploy
-                setTimeout(() => {
-                    if (!isAnimating) return;
-                    updateStatus('GRID FINS DEPLOYED', '30000', '-80', '10');
-                    document.querySelector('.phase-step:nth-child(2)').classList.add('active');
-                    booster.style.bottom = '100%';
-                    booster.style.transform = 'translateX(-50%) rotate(10deg)';
-                    activateEngines(true);
-                    
-                    // Step 3: Landing burn
-                    setTimeout(() => {
-                        if (!isAnimating) return;
-                        updateStatus('LANDING BURN', '15000', '-50', '40');
-                        document.querySelector('.phase-step:nth-child(3)').classList.add('active');
-                        booster.style.bottom = '70%';
-                        booster.style.transform = 'translateX(-50%) rotate(5deg)';
-                        
-                        // Step 4: Final approach
-                        setTimeout(() => {
-                            if (!isAnimating) return;
-                            updateStatus('FINAL APPROACH', '5000', '-20', '30');
-                            document.querySelector('.phase-step:nth-child(4)').classList.add('active');
-                            booster.style.bottom = '50%';
-                            booster.style.transform = 'translateX(-50%) rotate(2deg)';
-                            armPair.style.width = '240px';
-                            
-                            // Step 5: Hover for catch
-                            setTimeout(() => {
-                                if (!isAnimating) return;
-                                updateStatus('HOVER FOR CATCH', '1000', '-5', '20');
-                                document.querySelector('.phase-step:nth-child(5)').classList.add('active');
-                                booster.style.bottom = '35%';
-                                booster.style.transform = 'translateX(-50%) rotate(0deg)';
-                                armPair.style.width = '200px';
-                                armPair.classList.add('catching');
-                                
-                                // Step 6: Catch secured
-                                setTimeout(() => {
-                                    if (!isAnimating) return;
-                                    updateStatus('CATCH SECURED', '0', '0', '0');
-                                    document.querySelector('.phase-step:nth-child(6)').classList.add('active');
-                                    armPair.style.width = '160px';
-                                    setTimeout(() => {
-                                        activateEngines(false);
-                                        // Animation complete, update button state
-                                        const btn = document.getElementById('control-btn');
-                                        btn.textContent = 'Restart';
-                                        btn.disabled = false;
-                                    }, 500);
-                                }, 1500);
-                            }, 1500);
-                        }, 1500);
-                    }, 1500);
-                }, 1500);
-            }, 100);
-        }
-
-        function resetSequence(resetButton = true) {
-            const booster = document.querySelector('.booster');
-            const armPair = document.querySelector('.arm-pair');
-            
-            // Reset rocket position
-            booster.style.bottom = '200%';
-            booster.style.transform = 'translateX(-50%) rotate(15deg)';
-            
-            // Reset mechanical arm
-            armPair.style.width = '300px';
-            armPair.classList.remove('catching');
-            
-            // Turn off engines
-            activateEngines(false);
-            
-            // Reset state
-            isAnimating = false;
-            
-            // Reset button text (if needed)
-            if (resetButton) {
-                const btn = document.getElementById('control-btn');
-                btn.textContent = 'Start Recovery';
-                btn.disabled = false;
-            }
-            
-            // Reset state display
-            updateStatus('STANDBY', '---', '---', '---');
-            document.querySelectorAll('.phase-step').forEach(step => {
-                step.classList.remove('active');
-            });
-        }
-
-        function updateStatus(status, altitude, velocity, power) {
-            document.getElementById('status').textContent = status;
-            document.getElementById('altitude').textContent = altitude + ' m';
-            document.getElementById('velocity').textContent = velocity + ' m/s';
-            document.getElementById('power').textContent = power + ' %';
         }
 
         // Handle responsive layout adjustments
